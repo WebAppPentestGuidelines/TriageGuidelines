@@ -1,2 +1,2 @@
-# TriageGuidelines
-脆弱性トリアージガイドライン作成の手引き
+# 脆弱性トリアージガイドライン作成の手引き
+Guidance on developing vulnerability triage guidelines.
