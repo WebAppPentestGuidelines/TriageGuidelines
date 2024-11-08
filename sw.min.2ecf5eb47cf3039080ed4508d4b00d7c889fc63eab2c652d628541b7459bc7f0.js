@@ -1,0 +1,1 @@
+navigator.serviceWorker&&navigator.serviceWorker.register("/TriageGuidelines/sw.js",{scope:"/TriageGuidelines/"})
