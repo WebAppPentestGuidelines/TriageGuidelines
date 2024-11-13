@@ -1,5 +1,5 @@
 ---
-title: "脆弱性の管理方法を決める"
+title: "脆弱性の管理方法"
 weight: 6
 bookToc: false
 # bookFlatSection: false
@@ -9,7 +9,7 @@ bookToc: false
 # bookComments: false
 # bookSearchExclude: false
 ---
-# 脆弱性の管理方法を決める
+# 脆弱性の管理方法
 
 それぞれの脆弱性への対応状況を適切に管理することで対応漏れやミスを防ぐことができます。
 ここでは記録すべき情報と管理方法の例を記載します。自組織にとって管理しやすいツールを選択してください。
