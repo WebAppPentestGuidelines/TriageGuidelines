@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>3章 トリアージに利用できるフレームワーク on 脆弱性トリアージガイドライン作成の手引き</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/</link><description>Recent content in 3章 トリアージに利用できるフレームワーク on 脆弱性トリアージガイドライン作成の手引き</description><generator>Hugo</generator><language>ja</language><atom:link href="https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/index.xml" rel="self" type="application/rss+xml"/><item><title>CVSS</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section1/</guid><description>&lt;h1 id="cvss">
+ CVSS
+ &lt;a class="anchor" href="#cvss">#&lt;/a>
+&lt;/h1>
+&lt;p>CVSS（Common Vulnerability Scoring System）は、脆弱性の深刻度を数値化するためのフレームワークであり、ベンダーに依存しない共通の評価方法を提供しています。脆弱性の深刻度を定量的に評価することで、リスクを理解することができより精度の高いトリアージが可能となります。&lt;/p>
+&lt;p>CVSSにはバージョンがあり、ここではv3.1の一部を抜粋して紹介します。CVSSv.3.1の詳細は&lt;a href="https://www.first.org/cvss/v3.1/specification-document">「Common Vulnerability Scoring System v3.1: Specification Document」&lt;/a>をご覧ください。&lt;/p>
+&lt;h2 id="cvssのスコアの種類">
+ CVSSのスコアの種類
+ &lt;a class="anchor" href="#cvss%e3%81%ae%e3%82%b9%e3%82%b3%e3%82%a2%e3%81%ae%e7%a8%ae%e9%a1%9e">#&lt;/a>
+&lt;/h2>
+&lt;p>CVSSは、次の3つの基準で脆弱性を評価します。&lt;br>
+３つの基準すべてで評価する必要はありませんが、多くの基準で評価することでより精度の高いトリアージを行うことが可能となります。基本評価基準を基本とし、評価の目的や組織の状況に応じて適切な基準を選択し利用してください。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>基本評価基準 (Base Metrics):&lt;/strong>&lt;br>
+脆弱性そのものの特性を評価する基準です。情報システムに求められる3つのセキュリティ特性、「機密性（Confidentiality Impact）」、「完全性(Integrity Impact）」、「可用性(Availability Impact）」に対する影響を、ネットワークから攻撃可能かどうかといった基準で評価し、CVSS基本値(Base Score)を算出します。このスコアは時間の経過や利用環境の異なりによって変化しません。&lt;br>
+CVSS基本値は以下の8つの観点で算出します。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>攻撃元区分(AV：Attack Vector)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントをどこから攻撃可能であるかを「ネットワーク」、「隣接」、「ローカル」または「物理」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>攻撃条件の複雑さ(AC：Attack Complexity)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントを攻撃する際に必要な条件の複雑さを「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>必要な特権レベル(PR：Privileges Required)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントを攻撃する際に必要な特権のレベルを「不要」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>ユーザ関与レベル(UI：User Interaction)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントを攻撃する際に必要なユーザ関与レベルを「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>スコープ(S：Scope)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントへの攻撃による影響範囲を「変更なし」または「変更あり」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>機密性への影響(C：Confidentiality Impact)&lt;/strong>&lt;br>
+脆弱性を攻撃された際に、対象とする影響想定範囲の情報が漏えいする可能性を「なし」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>完全性への影響(I：Integrity Impact)&lt;/strong>&lt;br>
+脆弱性を攻撃された際に、対象とする影響想定範囲の情報が改ざんされる可能性を「なし」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>可用性への影響(A：Availability Impact)&lt;/strong>&lt;br>
+脆弱性を攻撃された際に、対象とする影響想定範囲の業務が遅延・停止する可能性を「なし」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>現状評価基準 (Temporal Metrics):&lt;/strong>&lt;br>
+脆弱性の現在の深刻度を評価する基準です。攻撃コードの出現有無や対策情報が利用可能であるかといった基準で評価し、CVSS現状値(Temporal Score)を算出します。このスコアは脆弱性への対応状況に応じ、時間が経過すると変化します。
+CVSS現状値はCVSS基本値の項目に以下の3つの観点を加え、算出します。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>攻撃される可能性(E：Exploit Code Maturity)&lt;/strong>&lt;br>
+攻撃コードや攻撃手法が実際に利用可能であるかを「未評価」、「容易に攻撃可能」、「攻撃可能」、「実証可能」または「未実証」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>利用可能な対策のレベル(RL：Remediation Level)&lt;/strong>&lt;br>
+脆弱性の対策がどの程度利用可能であるかを「未評価」、「なし」、「非公式」、「暫定」または「正式」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>脆弱性情報の信頼性(RC：Report Confidence)&lt;/strong>&lt;br>
+脆弱性に関する情報の信頼性を「未評価」、「確認済」、「未確証」、「未確認」または「正式」のいずれかで評価します。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>環境評価基準 (Environmental Metrics):&lt;/strong>&lt;br>
+利用環境も含め、最終的な脆弱性の深刻度を評価する基準です。攻撃を受けた場合の二次的な被害の大きさや、組織での対象製品の使用状況といった基準で評価し、 CVSS環境値 (Environmental Score) を算出します。このスコアは脆弱性に対して想定される脅威に応じ、変化します。&lt;br>
+CVSS環境値の計算には、CVSS現状値の要素に加えて、環境特有の要素として機密性、完全性、可用性の重要度や、攻撃元区分、攻撃条件の複雑さ、必要な特権レベル、ユーザー関与レベル、スコープの修正値が含まれます。これにより、環境値は利用状況固有のセキュリティ要件やリスク許容度が反映されます。&lt;/p></description></item><item><title>SSVC</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section2/</guid><description>&lt;h1 id="ssvc">
+ SSVC
+ &lt;a class="anchor" href="#ssvc">#&lt;/a>
+&lt;/h1>
+&lt;p>SSVC（Stakeholder-Specific Vulnerability Categorization）は、脆弱性管理を目的とした決定木モデルに基づくフレームワークです。デプロイヤー、サプライヤー、コーディネーターといった各ステークホルダーに個別の決定木を提供し、脆弱性対応の優先順位を決定します。&lt;br>
+従来のCVSSは、脆弱性の深刻度を一律の数値で評価しますが、個々の組織の特性や状況に応じた対応方針を決定するには不十分な場合があります。&lt;br>
+SSVCはこの課題を解決し、組織の特性やニーズに応じた具体的な対応方針を導き出すために設計されています。&lt;/p>
+&lt;h2 id="ステークホルダーと決定木">
+ ステークホルダーと決定木
+ &lt;a class="anchor" href="#%e3%82%b9%e3%83%86%e3%83%bc%e3%82%af%e3%83%9b%e3%83%ab%e3%83%80%e3%83%bc%e3%81%a8%e6%b1%ba%e5%ae%9a%e6%9c%a8">#&lt;/a>
+&lt;/h2>
+&lt;p>SSVCでは、次のステークホルダーに対して特定の決定木が用意されています。これにしたがって、脆弱性対応の優先度を決定します。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>デプロイヤー（Deployer）：ソフトウェアパッケージを利用して開発を行う組織&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>サプライヤー（Supplier）：ソフトウェアベンダーやパッチを提供する組織&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>コーディネーター（Coordinator）：脆弱性情報を統制する組織（例：CSIRT）&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>決定木は、複数の条件分岐からなるツリー形式で表現され、ユーザーが設問に答えることで最終的な判断が導き出されます。
+決定木は複数の決定ポイント（Decision Point）で構成され、各ポイントでの選択肢に基づき、最終的な脆弱性対応の優先度（Track、Track*、Attend、Act）が決まります。&lt;/p>
+&lt;p>決定ポイントは以下の5つです。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Exploitation：攻撃コードの公開状況や悪用の程度&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Exposure：脆弱性が外部からアクセス可能かどうか&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Technical Impact：脆弱性の技術的な影響度&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Mission Impact：組織のミッション遂行への影響度&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Safety Impact：安全への影響度&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>最終的な優先度は、以下の4種類で示されます。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Track：監視を継続する&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Track＊：監視を継続し、特定の条件が満たされた場合に次のアクションを考慮する&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Attend：注意を払い、対応の準備を始める&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Act：即時に対応行動を取る&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>SSVCの適切な決定木を選択する際には、ステークホルダーの役割、組織の特性とニーズ、具体的な判断条件、そして組織の規模と運用体制を考慮する必要があります。&lt;/p>
+&lt;h2 id="ssvcのメリット">
+ SSVCのメリット
+ &lt;a class="anchor" href="#ssvc%e3%81%ae%e3%83%a1%e3%83%aa%e3%83%83%e3%83%88">#&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>環境を考慮した評価&lt;/strong>&lt;br>
+SSVCは、従来のCVSSのような一律のスコアリングシステムとは異なり、組織固有の状況（使用環境、ビジネスへの影響など）を考慮して評価します。これにより、組織にとって最も重要な脆弱性に優先的に対応できます。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>自動化による効率化&lt;/strong>&lt;br>
+SSVCは、自動化が可能であり、以下のプロセスを通じて効率化を促進します。
+これにより、脆弱性の検出から対応までの時間を大幅に短縮し、人的ミスの削減にもつながります。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>脆弱性スキャナと連携して検出された脆弱性を自動的にSSVCの決定木に入力する&lt;/li>
+&lt;li>脅威インテリジェンスフィードと連携し、最新の攻撃トレンドを評価に反映する&lt;/li>
+&lt;li>チケットシステムと連携し、優先度に基づいて自動的にタスクを割り当てる&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>&lt;strong>柔軟に適用できること&lt;/strong>&lt;br>
+SSVCは、組織の規模や特性に合わせてカスタマイズが可能であり、特定の業界やニーズに対応させることができます。
+これにより、一般的な脆弱性管理手法が持つ一律なアプローチから脱却し、より効果的なリスク管理が可能になります。&lt;/li>
+&lt;/ol></description></item><item><title>EPSS</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section3/</guid><description>&lt;h1 id="epss">
+ EPSS
+ &lt;a class="anchor" href="#epss">#&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.first.org/epss">EPSS(Exploit Prediction Scoring System)&lt;/a>のスコアは、各脆弱性に対して0から1の範囲で算出され、スコアが高いほど攻撃に利用される可能性が高くなります。&lt;/p>
+&lt;p>&lt;strong>スコアリング方法:&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>CVEが割り当てられた脆弱性についての詳細を収集します。&lt;/li>
+&lt;li>ExploitDBやKEVカタログ(Known Exploited Vulnerabilities catalog)から公開されているエクスプロイトコードや攻撃に使用された実例を収集します。&lt;/li>
+&lt;li>上記の情報をEPSSのモデルからモデリング手法を用いてスコアを算出します。&lt;/li>
+&lt;/ol>
+&lt;h2 id="どのように使うのか">
+ どのように使うのか
+ &lt;a class="anchor" href="#%e3%81%a9%e3%81%ae%e3%82%88%e3%81%86%e3%81%ab%e4%bd%bf%e3%81%86%e3%81%ae%e3%81%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>CVEが割り当てられた脆弱性のリスク評価にはCVSSが用いられ、組織内で定められたパラメータが採用されることが多いですが、&lt;strong>まだ発生していないリスクの発生可能性を見積もるのは非常に難しい&lt;/strong>といえます。&lt;/p>
+&lt;p>そこで、EPSSのように、脆弱性が実際に悪用される確率を表す指標を採用することも効果的です。
+EPSSは実行環境を考慮していないため、リスク評価の完全な指標として用いることは推奨されませんが、&lt;strong>他に脆弱性の発生可能性を見積もる手段がない場合には有効&lt;/strong>です。&lt;/p>
+&lt;p>トリアージのパラメータとして必ずしも採用する必要はありませんが、トリアージ担当者は「判断の指標」として知っておくべきです。&lt;/p>
+&lt;h2 id="トリアージ設定におけるepss確認のメリット">
+ トリアージ設定におけるEPSS確認のメリット
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e8%a8%ad%e5%ae%9a%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8bepss%e7%a2%ba%e8%aa%8d%e3%81%ae%e3%83%a1%e3%83%aa%e3%83%83%e3%83%88">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;strong>脆弱性の優先順位付け&lt;/strong>&lt;br>
+脆弱性が実際に悪用される可能性を考慮して、優先順位を設定できます。組織内に脆弱性の危険度設定に関するノウハウがない場合や、CERTが設立されたばかりの際には、危険度設定の参考値としてEPSSを活用できます。&lt;br>
+ただし、EPSSはあくまで予測値であり、全ての脆弱性に設定されているわけではない点に留意する必要があります。&lt;br>
+EPSSを指標として採用する場合、3章の後半で紹介されているKEVカタログなどの公開情報と組み合わせて使用することを推奨します。&lt;/p></description></item><item><title>SBOM</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section4/</guid><description>&lt;h1 id="sbom">
+ SBOM
+ &lt;a class="anchor" href="#sbom">#&lt;/a>
+&lt;/h1>
+&lt;p>現代のソフトウェア開発では、複数のモジュールやシステムを組み合わせた構成が一般的です。そのため、システムで使用されているモジュールやライブラリ、フレームワークなどのソフトウェア依存関係を完全に把握するのは難しくなっています。&lt;/p>
+&lt;p>このような課題を解決する手法として、SBOM（Software Bill of Materials）を用いた管理手法が注目されています。SBOMとは、ソフトウェア製品に含まれるコンポーネント(部品)をリスト化したもので、ソフトウェアのコンポーネント一覧表を指します。実際には、SBOMに対応したリストを作成でき、SBOMの管理を行えるツールを使用して管理を行います。&lt;/p>
+&lt;p>SBOMを導入することで、新たな脆弱性が公表された際に、その影響を受けるソフトウェアを即座に特定できるようになります。これにより、脆弱性の管理だけでなく、ライセンス違反やサポート期限が切れたソフトウェアの確認にも活用できます。&lt;/p>
+&lt;p>また、経済産業省により「&lt;a href="https://www.meti.go.jp/press/2024/08/20240829001/20240829001.html">ソフトウェア管理に向けたSBOM（Software Bill of Materials）の導入に関する手引ver2.0&lt;/a>」が公開されており、注目されているSBOMですが、脆弱性管理やライセンス管理のメリットがある一方で、完全に解決できない課題やSBOMを運用する上での課題もあります。&lt;/p>
+&lt;p>&lt;strong>SBOM導入のメリット&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ソフトウェアコンポーネント管理の効率化・自動化、管理工数の削減&lt;/li>
+&lt;li>新たな脆弱性が発見された際に影響を受けるソフトウェアに含まれるコンポーネントの特定、特定までの時間短縮&lt;/li>
+&lt;li>OSSなどのライセンス情報の管理&lt;/li>
+&lt;li>EoS(End of Support)、EoL(End of Life)の管理&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>SBOM導入に関する課題&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>SBOMの管理対象とするコンポーネントの範囲が不明確だと、効果的な活用ができない&lt;/li>
+&lt;li>SBOMを導入すための環境整備や学習に工数を要する&lt;/li>
+&lt;li>コンポーネントの検知漏れや誤検知&lt;/li>
+&lt;li>SBOM出力結果の精査に多くの工数が掛かる&lt;/li>
+&lt;/ul></description></item><item><title>CISA KEVカタログ</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section5/</guid><description>&lt;h1 id="cisa-known-exploited-vulnerabilities-kev-カタログ">
+ CISA Known Exploited Vulnerabilities (KEV) カタログ
+ &lt;a class="anchor" href="#cisa-known-exploited-vulnerabilities-kev-%e3%82%ab%e3%82%bf%e3%83%ad%e3%82%b0">#&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">Known Exploited Vulnerabilities (KEV) カタログ&lt;/a>（悪用された既知の脆弱性カタログ）は米国土安全保障省（DHS）のサイバーセキュリティ・インフラストラクチャセキュリティ庁（CISA: Cybersecurity and Infrastructure Security Agency）が公開している、悪用が観測された脆弱性の一覧をまとめたカタログです。もともとは連邦政府機関のシステムを対象に、脆弱性を悪用した攻撃へ対処するために作成されたものです。&lt;/p>
+&lt;p>2024年11月現在、このカタログには、VPN機器のRCE脆弱性やOSの特権昇格の脆弱性など、1200件近くの脆弱性が登録されています。カタログへの登録条件は下記の3つです。&lt;/p>
+&lt;ol>
+&lt;li>CVE番号が割り当てられていること&lt;/li>
+&lt;li>悪用がされている確たる証拠があること&lt;/li>
+&lt;li>ベンダーからのアップデートなどの明確な対策方法があること&lt;/li>
+&lt;/ol>
+&lt;p>このうち、「2. 悪用がされている確たる証拠があること」には、脆弱でないシステムやハニーポットに対する悪用の試行も含まれていますが、スキャン行為やエクスプロイトの研究、PoCの公開はこれに含まれません。&lt;/p>
+&lt;p>他組織への攻撃ですでに悪用されたことのある脆弱性は、別の攻撃でも利用されることが多いため、迅速に対処するべき脆弱性であると考えられます。&lt;/p></description></item><item><title>Risk Rating Framework: OWASP Risk Rating Methodology</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section6/</guid><description>&lt;h1 id="risk-rating-framework-owasp-risk-rating-methodology">
+ Risk Rating Framework: OWASP Risk Rating Methodology
+ &lt;a class="anchor" href="#risk-rating-framework-owasp-risk-rating-methodology">#&lt;/a>
+&lt;/h1>
+&lt;p>OWASP Risk Rating Methodologyは、OWASPが提供する、アプリケーションセキュリティに特化したリスク評価手法です。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://owasp.org/www-community/OWASP_Risk_Rating_Methodology">https://owasp.org/www-community/OWASP_Risk_Rating_Methodology&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>本評価手法では、以下のような評価基準で判定しています。&lt;/p>
+&lt;ul>
+&lt;li>リスク = 可能性 × 影響（Risk = Likelihood x Impact）
+&lt;ul>
+&lt;li>可能性
+&lt;ul>
+&lt;li>（脅威エージェントの要因 ＋ 脆弱性の要因） / 2&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>影響
+&lt;ul>
+&lt;li>（技術的要因 ＋ ビジネスへの影響要因） / 2&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>「リスク（Risk）」は、「可能性」と「影響」を複数の要因に分けて評価され、各要因に基づきスコアを算出し、その平均値で評価を行います。&lt;/p>
+&lt;p>以下に概要を示します。&lt;/p>
+&lt;p>「可能性（Likelihood）」は、特定の脆弱性が攻撃者に発見され、悪用される可能性の大きさを指します。&lt;/p>
+&lt;p>以下の2つの要因についてスコアリングし、合計平均値を可能性の値として利用します。&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>脅威エージェントの要因（Threat Agent Factors）&lt;/strong>&lt;br>
+想定する攻撃者（Threat Agent）による攻撃が成功する可能性を推定します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>スキルレベル（Skill Level）&lt;/li>
+&lt;li>動機（Motive）&lt;/li>
+&lt;li>機会（Opportunity）&lt;/li>
+&lt;li>サイズ（Size）&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>&lt;strong>脆弱性の要因（Vulnerability Factors）&lt;/strong>&lt;br>
+対象とする脆弱性について、発見や悪用される可能性を推定します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>発見の容易さ（Ease of Discovery）&lt;/li>
+&lt;li>悪用の容易さ（Ease of Exploit）&lt;/li>
+&lt;li>認識（Awareness）&lt;/li>
+&lt;li>侵入検出（Intrusion Detection）&lt;/li>
+&lt;/ul>
+&lt;p>「影響（Impact）」は、攻撃が成功した際に影響がある以下の2種類の影響について想定します。&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>技術的要因（Technical Impact Factors）&lt;/strong>&lt;br>
+アプリケーションや使用するデータ、提供する機能に対する技術的影響を推定します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>機密性の喪失（Loss of Confidentiality）&lt;/li>
+&lt;li>整合性の損失（Loss of Integrity）&lt;/li>
+&lt;li>可用性の損失（Loss of Availability）&lt;/li>
+&lt;li>説明責任の喪失（Loss of Accountability）&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>&lt;strong>ビジネスへの影響要因（Business Imapct Factors）&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>経済的損失（Financial damage）&lt;/li>
+&lt;li>風評被害（Reputation damage）&lt;/li>
+&lt;li>コンプライアンス違反（Non-compliance）&lt;/li>
+&lt;li>プライバシー侵害（Privacy violation）&lt;/li>
+&lt;/ul>
+&lt;p>これらの値を元に、リスクの重大度をマトリックスから導き出します。&lt;/p></description></item></channel></rss>

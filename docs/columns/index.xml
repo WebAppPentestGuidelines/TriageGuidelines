@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>コラム on 脆弱性トリアージガイドライン作成の手引き</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/</link><description>Recent content in コラム on 脆弱性トリアージガイドライン作成の手引き</description><generator>Hugo</generator><language>ja</language><atom:link href="https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/index.xml" rel="self" type="application/rss+xml"/><item><title>NVDの更新停滞</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns1/</guid><description>&lt;h1 id="nvdの更新停滞">
+ NVDの更新停滞
+ &lt;a class="anchor" href="#nvd%e3%81%ae%e6%9b%b4%e6%96%b0%e5%81%9c%e6%bb%9e">#&lt;/a>
+&lt;/h1>
+&lt;p>2024年2月頃、NVD(National Vulnerability Database)の更新が突如停滞しました。&lt;br>
+NVDの更新が停滞した背景には、脆弱性報告の急増と対応スタッフの不足が主な原因とされています。&lt;br>
+NVDの脆弱性情報は多くの企業やセキュリティ製品にとって重要な情報源であり、更新の停滞は重大な問題を引き起こしています。&lt;/p>
+&lt;p>NISTはこの問題に対応するため、コンソーシアムを設立し、新しい体制の構築を進めていると発表しましたが、具体的な開始時期は公表されていません。（2024年11月現在）&lt;/p>
+&lt;p>コンソーシアムが設立されるまでの間、NVDの代替として他の脆弱性データベースの利用や、3章で紹介しているSSVC、EPSS、KEVカタログなどCVSS以外の評価指標の採用を検討する必要があるでしょう。&lt;/p></description></item><item><title>危険度がInfoの脆弱性の扱い方</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns2/</guid><description>&lt;h1 id="危険度がinfoの脆弱性の扱い方">
+ 危険度がInfoの脆弱性の扱い方
+ &lt;a class="anchor" href="#%e5%8d%b1%e9%99%ba%e5%ba%a6%e3%81%8cinfo%e3%81%ae%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e6%89%b1%e3%81%84%e6%96%b9">#&lt;/a>
+&lt;/h1>
+&lt;p>脆弱性診断のレポートではCritical/High/Medium/Low以外にInfoが検出されることがあります。&lt;br>
+&lt;strong>Info&lt;/strong>とは、診断対象のソフトウェアやシステムにおいて、気になる挙動や推奨するべき設定など、価値のある情報を伝えるためのレベルを指します。Infoには、セキュリティに関する問題だけでなく、その他の情報も含まれることがあります。Info以外に情報、None、脅威がゼロの脆弱性と表現されることもあります。&lt;/p>
+&lt;p>具体的には、下記に該当するものがInfoで報告された脆弱性として分類されています。&lt;/p>
+&lt;ul>
+&lt;li>現時点では脅威が顕在化していないが、セキュリティ上良くない実装や設定に関する指摘&lt;/li>
+&lt;li>セキュリティテスターが気になった挙動に関する指摘(不具合なども含まれます。)&lt;/li>
+&lt;li>セキュリティを向上させるための設定や推奨事項に関する指摘&lt;/li>
+&lt;/ul>
+&lt;p>Infoで報告された脆弱性は、Critical/High/Medium/Lowの脆弱性と比較して、対応の優先度を低く設定して問題ありません。&lt;br>
+ただ、現時点で脅威が顕在化していないため危険度が低いと判断されているものも含まれています。そのため、アプリケーションやシステムに他の脆弱性や脅威が発生した場合には組み合わせて悪用されることで、危険度が上がる可能性があり注意が必要です。&lt;/p>
+&lt;p>Infoで報告された脆弱性については内容を確認し、対応可能であれば調査や改善することを検討するようにしてください。特にブラックボックステストによるセキュリティテストでは決められた時間内でテスターが全ての挙動を調査することは難しいです。
+そのため、指摘された項目については、念のため対象箇所のソースコードを確認することをお勧めします。&lt;br>
+また、Infoにはセキュリティを向上させるためのヒントや参考情報が提供されている場合があります。今後の自社でのセキュアな開発に役立てる情報源として活用することをお勧めします。&lt;/p></description></item></channel></rss>

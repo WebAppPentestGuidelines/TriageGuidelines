@@ -31,19 +31,20 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 - 利用者数が1,000人以上
 - 可用性99.5％以上
 - 個人情報、機密情報の有無
-&lt;/code>&lt;/pre></description></item><item><title>脆弱性情報収集方法を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</guid><description>&lt;h1 id="脆弱性情報収集方法を決める">
- 脆弱性情報収集方法を決める
- &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e6%83%85%e5%a0%b1%e5%8f%8e%e9%9b%86%e6%96%b9%e6%b3%95%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
+&lt;/code>&lt;/pre></description></item><item><title>脆弱性の影響範囲の調査</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</guid><description>&lt;h1 id="脆弱性の影響範囲の調査">
+ 脆弱性の影響範囲の調査
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e5%bd%b1%e9%9f%bf%e7%af%84%e5%9b%b2%e3%81%ae%e8%aa%bf%e6%9f%bb">#&lt;/a>
 &lt;/h1>
 &lt;p>脆弱性情報の収集や脆弱性に関する具体的な内容や原因を理解するためには、セキュリティに関する専門知識が必要になります。さまざまな組織や機関から脆弱性情報が公開されていますが、最初は信頼できる情報源から脆弱性情報を収集するようにしましょう。
 以下は、収集する情報源のサイト一例です。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://www.jpcert.or.jp/">JPCERT/CC&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://jvn.jp/">JVN&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://nvd.nist.gov">NVD&lt;/a>（英語サイトのみ）&lt;/li>
 &lt;/ul>
-&lt;p>また、脆弱性診断を実施して脆弱性を調べるのも有効です。脆弱性診断の対象は、あらかじめ診断事業者と発注者間で決められていることが一般的です。そのため、報告される脆弱性情報は対象が限定的ですが、報告された範囲に限らず、類似の脆弱性が他のシステムにも影響がないか確認するようにしてください。&lt;/p></description></item><item><title>トリアージ基準を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</guid><description>&lt;h1 id="トリアージ基準を決める">
- トリアージ基準を決める
- &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e5%9f%ba%e6%ba%96%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
+&lt;p>また、脆弱性診断を実施して脆弱性を調べるのも有効です。脆弱性診断の対象は、あらかじめ診断事業者と発注者間で決められていることが一般的です。そのため、報告される脆弱性情報は対象が限定的ですが、報告された範囲に限らず、類似の脆弱性が他のシステムにも影響がないか確認するようにしてください。&lt;/p></description></item><item><title>トリアージで決めるべきこと</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</guid><description>&lt;h1 id="トリアージで決めるべきこと">
+ トリアージで決めるべきこと
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e3%81%a7%e6%b1%ba%e3%82%81%e3%82%8b%e3%81%b9%e3%81%8d%e3%81%93%e3%81%a8">#&lt;/a>
 &lt;/h1>
 &lt;p>収集した脆弱性情報を効率的に対応するためには、統一的なトリアージの対応基準を設定することが重要です。
 トリアージの対応基準軸として、対象資産の重要度と脆弱性の危険度を基に対応優先度を決定できるようにしましょう。&lt;/p>
@@ -51,20 +52,13 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 &lt;p>対象資産の重要度と脆弱性の危険度については、&lt;a href="#%e5%af%be%e8%b1%a1%e3%81%ae%e9%87%8d%e8%a6%81%e5%ba%a6%e8%a9%95%e4%be%a1">対象の重要度評価&lt;/a>と&lt;a href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e5%8d%b1%e9%99%ba%e5%ba%a6%e8%a9%95%e4%be%a1">脆弱性の危険度評価&lt;/a>に記載していますので、そちらをご確認ください。&lt;/p>
 &lt;p>対応優先度の区分は、過度に複雑化すると管理や運用が難しくなり、単純すぎると適切なトリアージが困難になるため、3,4段階程度の区分に分けることをお勧めします。それぞれの区分に応じた対応要否と対応期限を決めるようにしましょう。
 対応の要否と期限の決め方については、&lt;a href="../section5/">対応の要否と期限を決める&lt;/a>に記載していますので、そちらをご確認ください。&lt;/p>
-&lt;p>以下の順で基準を決めましょう。&lt;/p>
-&lt;ul>
-&lt;li>対象の重要度評価&lt;/li>
-&lt;li>脆弱性の危険度評価&lt;/li>
-&lt;li>対応の優先度評価&lt;/li>
-&lt;li>対応の要否と期限の評価&lt;/li>
-&lt;/ul>
 &lt;h2 id="対象の重要度評価">
  対象の重要度評価
  &lt;a class="anchor" href="#%e5%af%be%e8%b1%a1%e3%81%ae%e9%87%8d%e8%a6%81%e5%ba%a6%e8%a9%95%e4%be%a1">#&lt;/a>
 &lt;/h2>
 &lt;p>脆弱性の評価が完了したら、次に資産の重要度を評価します。
 まずは重要度の評価基準の選定をするところから始めると良いでしょう。
-顧客情報や機密性の高い情報が侵害された場合のビジネスインパクトを検討し、対象システムが扱う情報資産の重要度に基づき対策の優先度を設定できます。
+顧客情報や機密性の高い情報が侵害された場合のビジネスインパクトを検討し、対象システムが扱う情報資産の重要度に基づき対策の優先度を設定します。
 以下は、評価分類の一例です。&lt;/p>
 &lt;ul>
 &lt;li>
@@ -124,7 +118,7 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 &lt;/li>
 &lt;/ul>
 &lt;p>CVSSのみで危険度を評価するのは専門知識がない人でもできる単純な方法ですが、実際の攻撃リスクと乖離する可能性があります。
-今後の公開を予定している本ドキュメントの2章以降では、専門的な知識を活用して脆弱性の危険度や影響範囲をより正確に評価する方法を紹介する予定です。&lt;/p></description></item><item><title>対応の要否と期限を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</guid><description>&lt;h1 id="対応の要否と期限を決める">
+2章以降では、専門的な知識を活用して脆弱性の危険度や影響範囲をより正確に評価する方法を紹介します。&lt;/p></description></item><item><title>対応の要否と期限を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</guid><description>&lt;h1 id="対応の要否と期限を決める">
  対応の要否と期限を決める
  &lt;a class="anchor" href="#%e5%af%be%e5%bf%9c%e3%81%ae%e8%a6%81%e5%90%a6%e3%81%a8%e6%9c%9f%e9%99%90%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
 &lt;/h1>
@@ -162,7 +156,7 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
-&lt;p>また、これ以外にも対応要否や対応期限を決めるいくつかのパターンを例として下記に記載しています。なお、本節で提示しているパターンは簡易な対応であり、より高度な対応について知りたい方は4章を参照してください。&lt;/p>
+&lt;p>また、これ以外にも対応要否や対応期限を決めるいくつかのパターンを例として下記に記載しています。なお、本節で提示しているパターンは簡易な対応であり、より高度な対応について知りたい方は４章を参照してください。&lt;/p>
 &lt;ul>
 &lt;li>
 &lt;p>対応の要否&lt;/p>
@@ -204,9 +198,9 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 &lt;p>利用しているソフトウェア等について、脆弱性情報を収集し、脆弱性の危険度が「高」の脆弱性については迅速に、危険度「中」は公開までにセキュリティパッチの適用や最新版へのバージョンアップによるアップデートを実施してください。&lt;/p>
 &lt;/blockquote>
 &lt;p>それ以外の脆弱性については、セキュリティパッチの適用や最新版へのバージョンアップを行うかどうかを、脆弱性によるシステムへの影響等を考慮して判断してください。&lt;/p>
-&lt;/blockquote></description></item><item><title>脆弱性の管理方法を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</guid><description>&lt;h1 id="脆弱性の管理方法を決める">
- 脆弱性の管理方法を決める
- &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
+&lt;/blockquote></description></item><item><title>脆弱性の管理方法</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</guid><description>&lt;h1 id="脆弱性の管理方法">
+ 脆弱性の管理方法
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95">#&lt;/a>
 &lt;/h1>
 &lt;p>それぞれの脆弱性への対応状況を適切に管理することで対応漏れやミスを防ぐことができます。
 ここでは記録すべき情報と管理方法の例を記載します。自組織にとって管理しやすいツールを選択してください。&lt;/p>
@@ -329,5 +323,5 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 この基準で実際にトリアージをしてみると、例えば優先度高に分類した対象が大量出てきてしまって、さらにその中で優先順位付けが必要になる、ということがあるかもしれません。あるいは、この基準で算出した脆弱性危険度と感覚的な危険度に乖離があるかもしれません。&lt;/p>
 &lt;p>前述の通り、ガイドラインは一度作成したものを使い続けるのではなく、脆弱性対応が完了した後、あるいは1～2年のサイクルで、トリアージ時の改善点（反省点）を踏まえ、アップデートすることを推奨します。&lt;/p>
 &lt;p>その際まずは、基準の定義を変更することで調整できないかどうか検討してみてください。例えば危険度のボーダーラインとなるCVSS値を上下させたり、優先度マトリックスの定義の変更などが考えられます。&lt;/p>
-&lt;p>それでも調整しきれない場合は、資産価値や危険度をより詳細に評価したり、例えば攻撃コードの流通状況など別の評価軸を導入していく必要があります。ただしそのためには多くの場合、詳細な評価をするためには、より専門的な知識が必要になってきます。２章ではそれらの手法について紹介します。&lt;/p>
+&lt;p>それでも調整しきれない場合は、資産価値や危険度をより詳細に評価したり、例えば攻撃コードの流通状況など別の評価軸を導入していく必要があります。ただしそのためには多くの場合、詳細な評価をするためにより専門的な知識が必要になってきます。２章ではそれらの手法について紹介します。&lt;/p>
 &lt;p>どうしてもすべてのシステムに適用できる統一的な基準の調整が難しいようであれば、特定のシステム専用に基準値の違うガイドラインを作成することも検討してください。&lt;/p></description></item></channel></rss>

@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>脆弱性トリアージガイドライン作成の手引き</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/</link><description>Recent content on 脆弱性トリアージガイドライン作成の手引き</description><generator>Hugo</generator><language>ja</language><atom:link href="https://webapppentestguidelines.github.io/TriageGuidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>関係者の役割と責任を明確にする</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section1/</guid><description>&lt;h1 id="関係者の役割と責任を明確にする">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>脆弱性トリアージガイドライン作成の手引き</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/</link><description>Recent content on 脆弱性トリアージガイドライン作成の手引き</description><generator>Hugo</generator><language>ja</language><atom:link href="https://webapppentestguidelines.github.io/TriageGuidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>CVSS</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section1/</guid><description>&lt;h1 id="cvss">
+ CVSS
+ &lt;a class="anchor" href="#cvss">#&lt;/a>
+&lt;/h1>
+&lt;p>CVSS（Common Vulnerability Scoring System）は、脆弱性の深刻度を数値化するためのフレームワークであり、ベンダーに依存しない共通の評価方法を提供しています。脆弱性の深刻度を定量的に評価することで、リスクを理解することができより精度の高いトリアージが可能となります。&lt;/p>
+&lt;p>CVSSにはバージョンがあり、ここではv3.1の一部を抜粋して紹介します。CVSSv.3.1の詳細は&lt;a href="https://www.first.org/cvss/v3.1/specification-document">「Common Vulnerability Scoring System v3.1: Specification Document」&lt;/a>をご覧ください。&lt;/p>
+&lt;h2 id="cvssのスコアの種類">
+ CVSSのスコアの種類
+ &lt;a class="anchor" href="#cvss%e3%81%ae%e3%82%b9%e3%82%b3%e3%82%a2%e3%81%ae%e7%a8%ae%e9%a1%9e">#&lt;/a>
+&lt;/h2>
+&lt;p>CVSSは、次の3つの基準で脆弱性を評価します。&lt;br>
+３つの基準すべてで評価する必要はありませんが、多くの基準で評価することでより精度の高いトリアージを行うことが可能となります。基本評価基準を基本とし、評価の目的や組織の状況に応じて適切な基準を選択し利用してください。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>基本評価基準 (Base Metrics):&lt;/strong>&lt;br>
+脆弱性そのものの特性を評価する基準です。情報システムに求められる3つのセキュリティ特性、「機密性（Confidentiality Impact）」、「完全性(Integrity Impact）」、「可用性(Availability Impact）」に対する影響を、ネットワークから攻撃可能かどうかといった基準で評価し、CVSS基本値(Base Score)を算出します。このスコアは時間の経過や利用環境の異なりによって変化しません。&lt;br>
+CVSS基本値は以下の8つの観点で算出します。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>攻撃元区分(AV：Attack Vector)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントをどこから攻撃可能であるかを「ネットワーク」、「隣接」、「ローカル」または「物理」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>攻撃条件の複雑さ(AC：Attack Complexity)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントを攻撃する際に必要な条件の複雑さを「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>必要な特権レベル(PR：Privileges Required)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントを攻撃する際に必要な特権のレベルを「不要」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>ユーザ関与レベル(UI：User Interaction)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントを攻撃する際に必要なユーザ関与レベルを「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>スコープ(S：Scope)&lt;/strong>&lt;br>
+脆弱性のあるコンポーネントへの攻撃による影響範囲を「変更なし」または「変更あり」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>機密性への影響(C：Confidentiality Impact)&lt;/strong>&lt;br>
+脆弱性を攻撃された際に、対象とする影響想定範囲の情報が漏えいする可能性を「なし」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>完全性への影響(I：Integrity Impact)&lt;/strong>&lt;br>
+脆弱性を攻撃された際に、対象とする影響想定範囲の情報が改ざんされる可能性を「なし」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>可用性への影響(A：Availability Impact)&lt;/strong>&lt;br>
+脆弱性を攻撃された際に、対象とする影響想定範囲の業務が遅延・停止する可能性を「なし」、「低」または「高」のいずれかで評価します。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>現状評価基準 (Temporal Metrics):&lt;/strong>&lt;br>
+脆弱性の現在の深刻度を評価する基準です。攻撃コードの出現有無や対策情報が利用可能であるかといった基準で評価し、CVSS現状値(Temporal Score)を算出します。このスコアは脆弱性への対応状況に応じ、時間が経過すると変化します。
+CVSS現状値はCVSS基本値の項目に以下の3つの観点を加え、算出します。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>攻撃される可能性(E：Exploit Code Maturity)&lt;/strong>&lt;br>
+攻撃コードや攻撃手法が実際に利用可能であるかを「未評価」、「容易に攻撃可能」、「攻撃可能」、「実証可能」または「未実証」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>利用可能な対策のレベル(RL：Remediation Level)&lt;/strong>&lt;br>
+脆弱性の対策がどの程度利用可能であるかを「未評価」、「なし」、「非公式」、「暫定」または「正式」のいずれかで評価します。&lt;/li>
+&lt;li>&lt;strong>脆弱性情報の信頼性(RC：Report Confidence)&lt;/strong>&lt;br>
+脆弱性に関する情報の信頼性を「未評価」、「確認済」、「未確証」、「未確認」または「正式」のいずれかで評価します。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>環境評価基準 (Environmental Metrics):&lt;/strong>&lt;br>
+利用環境も含め、最終的な脆弱性の深刻度を評価する基準です。攻撃を受けた場合の二次的な被害の大きさや、組織での対象製品の使用状況といった基準で評価し、 CVSS環境値 (Environmental Score) を算出します。このスコアは脆弱性に対して想定される脅威に応じ、変化します。&lt;br>
+CVSS環境値の計算には、CVSS現状値の要素に加えて、環境特有の要素として機密性、完全性、可用性の重要度や、攻撃元区分、攻撃条件の複雑さ、必要な特権レベル、ユーザー関与レベル、スコープの修正値が含まれます。これにより、環境値は利用状況固有のセキュリティ要件やリスク許容度が反映されます。&lt;/p></description></item><item><title>NVDの更新停滞</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns1/</guid><description>&lt;h1 id="nvdの更新停滞">
+ NVDの更新停滞
+ &lt;a class="anchor" href="#nvd%e3%81%ae%e6%9b%b4%e6%96%b0%e5%81%9c%e6%bb%9e">#&lt;/a>
+&lt;/h1>
+&lt;p>2024年2月頃、NVD(National Vulnerability Database)の更新が突如停滞しました。&lt;br>
+NVDの更新が停滞した背景には、脆弱性報告の急増と対応スタッフの不足が主な原因とされています。&lt;br>
+NVDの脆弱性情報は多くの企業やセキュリティ製品にとって重要な情報源であり、更新の停滞は重大な問題を引き起こしています。&lt;/p>
+&lt;p>NISTはこの問題に対応するため、コンソーシアムを設立し、新しい体制の構築を進めていると発表しましたが、具体的な開始時期は公表されていません。（2024年11月現在）&lt;/p>
+&lt;p>コンソーシアムが設立されるまでの間、NVDの代替として他の脆弱性データベースの利用や、3章で紹介しているSSVC、EPSS、KEVカタログなどCVSS以外の評価指標の採用を検討する必要があるでしょう。&lt;/p></description></item><item><title>関係者の役割と責任を明確にする</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section1/</guid><description>&lt;h1 id="関係者の役割と責任を明確にする">
  関係者の役割と責任を明確にする
  &lt;a class="anchor" href="#%e9%96%a2%e4%bf%82%e8%80%85%e3%81%ae%e5%bd%b9%e5%89%b2%e3%81%a8%e8%b2%ac%e4%bb%bb%e3%82%92%e6%98%8e%e7%a2%ba%e3%81%ab%e3%81%99%e3%82%8b">#&lt;/a>
 &lt;/h1>
@@ -19,7 +79,385 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 
 4. システム管理担当者
 システム管理責任者の指示のもと、対象システムの管理業務の推進と維持管理に必要な実務作業を担当します。
-&lt;/code>&lt;/pre></description></item><item><title>トリアージガイドラインの適用範囲を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section2/</guid><description>&lt;h1 id="トリアージガイドラインの適用範囲を決める">
+&lt;/code>&lt;/pre></description></item><item><title>修正コストについて</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter4/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter4/section1/</guid><description>&lt;h1 id="修正コストについて">
+ 修正コストについて
+ &lt;a class="anchor" href="#%e4%bf%ae%e6%ad%a3%e3%82%b3%e3%82%b9%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6">#&lt;/a>
+&lt;/h1>
+&lt;p>実際にトリアージした脆弱性を対策しようとする際に、脆弱性を修正する際のコストがどの程度であるかを把握する必要があるでしょう。&lt;br>
+脆弱性を対策するためにはどのような作業が必要となるかや発生する影響などを確認しましょう。&lt;/p>
+&lt;ul>
+&lt;li>部分的なソースコードの修正のみ&lt;/li>
+&lt;li>一部の設定変更で対応可能&lt;/li>
+&lt;li>バージョンアップやパッチ適用が必要&lt;/li>
+&lt;li>大規模な設計見直しが必要&lt;/li>
+&lt;li>サービスの停止を伴う&lt;/li>
+&lt;/ul>
+&lt;p>なお、諸事情によって脆弱性の根本対策が難しい場合があります。&lt;br>
+例えば、ライブラリの依存関係が動作に影響を及ぼす場合には、バージョンアップでの対策が難しい場合が考えられます。&lt;br>
+上記のように脆弱性の根本対策が困難である場合には、後述する例外的対策の実施を検討しましょう。&lt;/p>
+&lt;p>また、修正コストを算出する場合には以下のような観点も考慮する必要があります。&lt;/p>
+&lt;ul>
+&lt;li>社内リソースで対応可能か、外注費用が必要となるか&lt;/li>
+&lt;li>修正後のテストにて発生するコストについて&lt;/li>
+&lt;/ul>
+&lt;p>もし、修正コストが膨大にかかりそうなことが判明した場合には、対策をどのように進めるべきかについて別途検討する必要があるでしょう。&lt;br>
+致命的な脆弱性の場合には、修正コストがかかったとしても対応を実施しなければならない場合もあります。&lt;br>
+その際には、対象の脆弱性の影響が事業にどの程度影響を及ぼすか判断する必要があります。&lt;br>
+システム的な影響以外にも、企業のブランドイメージや評判への影響なども考慮すべきでしょう。&lt;/p>
+&lt;ul>
+&lt;li>監督官庁・業界団体のガイドラインへの違反による影響&lt;/li>
+&lt;li>評判、ブランド、イメージの悪化による影響
+&lt;ul>
+&lt;li>重要な取引先の損失&lt;/li>
+&lt;li>ブランドの失墜&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>脆弱性の修正コストが、経済的な損失を大きく上回る場合は、脆弱性を修正しないビジネス上の決断を行う場合もあります。&lt;br>
+リスクの受容や回避など重要なリスクの対応方針の決定は、経営層が判断する必要があります。&lt;/p>
+&lt;ul>
+&lt;li>修正コストや経済的な影響の判断例
+&lt;ul>
+&lt;li>脆弱性の修正コストが過大な場合、保険的な対策を行い経済的な損失を抑えリスクの一部を低減する&lt;/li>
+&lt;li>経済的な損失が小さく、脆弱性の修正コストが経済的な損失を上回る場合リスクを許容する&lt;/li>
+&lt;li>脆弱性がある機能やシステムのみ停止しリスクを回避する&lt;/li>
+&lt;li>影響は大きいが発生確率が低い場合、保険に入りリスクを移転する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>脆弱性の影響範囲</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section1/</guid><description>&lt;h1 id="脆弱性の影響範囲">
+ 脆弱性の影響範囲
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e5%bd%b1%e9%9f%bf%e7%af%84%e5%9b%b2">#&lt;/a>
+&lt;/h1>
+&lt;p>脆弱性がシステムに与える影響範囲を評価し、その精度を向上させます。たとえサービスが一般公開されていても、脆弱性の影響範囲が限定されることがあります。例えば、古いブラウザを利用しているユーザーなど、限定された利用者にのみ影響する脆弱性などです。
+このような場合、影響範囲が限定されるため、対応の優先度を下げることも可能です。
+これらの判断を行うためには、システムの内部仕様を理解することが重要になります。&lt;/p>
+&lt;h2 id="システムの内部仕様の理解が必要な理由">
+ システムの内部仕様の理解が必要な理由
+ &lt;a class="anchor" href="#%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%ae%e5%86%85%e9%83%a8%e4%bb%95%e6%a7%98%e3%81%ae%e7%90%86%e8%a7%a3%e3%81%8c%e5%bf%85%e8%a6%81%e3%81%aa%e7%90%86%e7%94%b1">#&lt;/a>
+&lt;/h2>
+&lt;h3 id="システム設計や構成の理解">
+ システム設計や構成の理解
+ &lt;a class="anchor" href="#%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e8%a8%ad%e8%a8%88%e3%82%84%e6%a7%8b%e6%88%90%e3%81%ae%e7%90%86%e8%a7%a3">#&lt;/a>
+&lt;/h3>
+&lt;p>内部仕様を理解することで、脆弱性がシステムのどの部分に存在し、どのように悪用される可能性があるかをより正確に判断できます。例えば、SQLインジェクションの脆弱性が発見された場合、内部仕様を把握していれば、その脆弱性がどのデータベースに影響を与えるかを正確に判断ができます。&lt;/p>
+&lt;h3 id="攻撃シナリオの理解">
+ 攻撃シナリオの理解
+ &lt;a class="anchor" href="#%e6%94%bb%e6%92%83%e3%82%b7%e3%83%8a%e3%83%aa%e3%82%aa%e3%81%ae%e7%90%86%e8%a7%a3">#&lt;/a>
+&lt;/h3>
+&lt;p>内部仕様を把握していると、攻撃者がどのような経路をたどってシステムに侵入し、どのようにして脆弱性を悪用するかを具体的にシミュレーションできます。さらに、そのシナリオの実現可能性も評価することができます。&lt;/p>
+&lt;h2 id="対応の優先度が上がる場合の例">
+ 対応の優先度が上がる場合の例
+ &lt;a class="anchor" href="#%e5%af%be%e5%bf%9c%e3%81%ae%e5%84%aa%e5%85%88%e5%ba%a6%e3%81%8c%e4%b8%8a%e3%81%8c%e3%82%8b%e5%a0%b4%e5%90%88%e3%81%ae%e4%be%8b">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>脆弱性が発見されたシステムが、重要なシステムと接続されており、脆弱性の影響が拡大する可能性がある場合。&lt;/li>
+&lt;li>自社の情報資産が特殊で、一般的な評価では低い評価になっていた場合。&lt;/li>
+&lt;/ul>
+&lt;h2 id="対応の優先度が下がる場合の例">
+ 対応の優先度が下がる場合の例
+ &lt;a class="anchor" href="#%e5%af%be%e5%bf%9c%e3%81%ae%e5%84%aa%e5%85%88%e5%ba%a6%e3%81%8c%e4%b8%8b%e3%81%8c%e3%82%8b%e5%a0%b4%e5%90%88%e3%81%ae%e4%be%8b">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>攻撃には特定のIPアドレスからのアクセスなど、限定された条件が必要なため、攻撃の成功率が低い場合。&lt;/li>
+&lt;li>システムにWAFなどの対策が導入されており、脆弱性を防ぐことができる場合。&lt;/li>
+&lt;li>IDS／IPSによって攻撃が即座に検知され、即座に対応可能な場合。&lt;/li>
+&lt;/ul></description></item><item><title>脆弱性対応フローが明確化されていなかった組織事例</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter5/section1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter5/section1/</guid><description>&lt;h1 id="脆弱性対応フローが明確化されていなかった組織事例">
+ 脆弱性対応フローが明確化されていなかった組織事例
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e5%af%be%e5%bf%9c%e3%83%95%e3%83%ad%e3%83%bc%e3%81%8c%e6%98%8e%e7%a2%ba%e5%8c%96%e3%81%95%e3%82%8c%e3%81%a6%e3%81%84%e3%81%aa%e3%81%8b%e3%81%a3%e3%81%9f%e7%b5%84%e7%b9%94%e4%ba%8b%e4%be%8b">#&lt;/a>
+&lt;/h1>
+&lt;p>商社系のA社では、小規模なシステムを管理していますが、脆弱性対応について明確なポリシーはありませんでした。ニュースなどで報道されるものについて対応する、という状況でした。&lt;br>
+自社のサイバーセキュリティ対策を強化することになり、脆弱性トリアージや対応について判断基準を決め、対応の標準化を行うことを決定しました。&lt;/p>
+&lt;p>まず、対応の全体像を決定しました。1章の「脆弱性対応の判断フロー」において、どのタイミングで何を行うのか、その際の判断根拠となる社内規定等はあるのか/なければ整備する必要があるのかを検討しました。&lt;/p>
+&lt;p>次に、脆弱性対応の優先度判断となる脆弱性トリアージ基準を策定しました。脆弱性トリアージを組織として行うことに慣れていないため、まずはCVSS BaseScoreを基準に設定しました。まずは、複雑ではなく単純化し、運用に慣れてきたら判断基準を変更していくという戦略です。&lt;/p>
+&lt;ul>
+&lt;li>9.5以上(重大度:Critical)：1週間程度以内で対応し、場合によっては業務を止める&lt;/li>
+&lt;li>8.0以上(重大度:High)：なるべく早く対応する（2週間程度以内）&lt;/li>
+&lt;li>8.0未満：早急に適用する必要はないが、定期メンテナンス等で適用を検討する&lt;/li>
+&lt;/ul>
+&lt;p>その後、脆弱性対応に対する基準を策定しました。例えば更新プログラムを適用することを想定した場合、どのようなプロセスが必要なのか、その為の準備はできているかなどを確認し、整備しました。テスト環境が本番と同じ状態か、更新後の稼働テストは何を確認するのか、等です。&lt;/p>
+&lt;p>そして、脆弱性情報の取得方法や、対象システムの現状把握を行いました。1章の「脆弱性対応の判断フロー」にもある通り、脆弱性の認知と影響分析が必要です。&lt;br>
+まずは対象システムの構成を把握し、利用しているソフトウェアの棚卸を行いました。これにより、脆弱性を把握すべきソフトウェアが特定され、情報収集がやりやすくなります。また、これらを自動化するために、脆弱性管理ソフトウェアを入れました。&lt;/p>
+&lt;p>これらにより、脆弱性認知速度が上がり、より早く対応が必要かを判断することができるようになりました。今までは被害影響が出たニュースを基に対応していましたが、脆弱性情報が出たタイミングで自システムが対象になるのかを判断できる状況になりました。&lt;/p>
+&lt;p>上記運用をしばらく続けた中で、&amp;ldquo;対応すべきと判断される脆弱性の数&amp;quot;が多いと感じる点が、課題となっています。これは脆弱性トリアージでCVSS BaseScoreのみを利用しており、実際のリスクでの判断とはなっていない点が関連しています。今後、攻撃される可能性の評価として、EPSSやKEVカタログなどを取り入れることで、トリアージ基準を脆弱性自体の危険度から事業へのリスクに変えていく方針としています。&lt;/p>
+&lt;p>今回の事例では、以下が言えると思います。&lt;/p>
+&lt;ul>
+&lt;li>まずは小さく始める
+&lt;ul>
+&lt;li>脆弱性トリアージでは、最初から複雑な基準を盛り込むと、破綻する可能性があります&lt;/li>
+&lt;li>理想論は一旦置いておき、「現実に対応できる/しきれる 基準」を設定します&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>実際に脆弱性トリアージを行って、課題を感じたら変更していく
+&lt;ul>
+&lt;li>課題を感じた時点で、現状のフローや基準を見直し、自組織の体力に合わせて調整することが望ましいと考えられます&lt;/li>
+&lt;li>状況により、人員の増強やソフトウェアの導入も検討が必要です&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>SSVC</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section2/</guid><description>&lt;h1 id="ssvc">
+ SSVC
+ &lt;a class="anchor" href="#ssvc">#&lt;/a>
+&lt;/h1>
+&lt;p>SSVC（Stakeholder-Specific Vulnerability Categorization）は、脆弱性管理を目的とした決定木モデルに基づくフレームワークです。デプロイヤー、サプライヤー、コーディネーターといった各ステークホルダーに個別の決定木を提供し、脆弱性対応の優先順位を決定します。&lt;br>
+従来のCVSSは、脆弱性の深刻度を一律の数値で評価しますが、個々の組織の特性や状況に応じた対応方針を決定するには不十分な場合があります。&lt;br>
+SSVCはこの課題を解決し、組織の特性やニーズに応じた具体的な対応方針を導き出すために設計されています。&lt;/p>
+&lt;h2 id="ステークホルダーと決定木">
+ ステークホルダーと決定木
+ &lt;a class="anchor" href="#%e3%82%b9%e3%83%86%e3%83%bc%e3%82%af%e3%83%9b%e3%83%ab%e3%83%80%e3%83%bc%e3%81%a8%e6%b1%ba%e5%ae%9a%e6%9c%a8">#&lt;/a>
+&lt;/h2>
+&lt;p>SSVCでは、次のステークホルダーに対して特定の決定木が用意されています。これにしたがって、脆弱性対応の優先度を決定します。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>デプロイヤー（Deployer）：ソフトウェアパッケージを利用して開発を行う組織&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>サプライヤー（Supplier）：ソフトウェアベンダーやパッチを提供する組織&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>コーディネーター（Coordinator）：脆弱性情報を統制する組織（例：CSIRT）&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>決定木は、複数の条件分岐からなるツリー形式で表現され、ユーザーが設問に答えることで最終的な判断が導き出されます。
+決定木は複数の決定ポイント（Decision Point）で構成され、各ポイントでの選択肢に基づき、最終的な脆弱性対応の優先度（Track、Track*、Attend、Act）が決まります。&lt;/p>
+&lt;p>決定ポイントは以下の5つです。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Exploitation：攻撃コードの公開状況や悪用の程度&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Exposure：脆弱性が外部からアクセス可能かどうか&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Technical Impact：脆弱性の技術的な影響度&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Mission Impact：組織のミッション遂行への影響度&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Safety Impact：安全への影響度&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>最終的な優先度は、以下の4種類で示されます。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Track：監視を継続する&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Track＊：監視を継続し、特定の条件が満たされた場合に次のアクションを考慮する&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Attend：注意を払い、対応の準備を始める&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Act：即時に対応行動を取る&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>SSVCの適切な決定木を選択する際には、ステークホルダーの役割、組織の特性とニーズ、具体的な判断条件、そして組織の規模と運用体制を考慮する必要があります。&lt;/p>
+&lt;h2 id="ssvcのメリット">
+ SSVCのメリット
+ &lt;a class="anchor" href="#ssvc%e3%81%ae%e3%83%a1%e3%83%aa%e3%83%83%e3%83%88">#&lt;/a>
+&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>環境を考慮した評価&lt;/strong>&lt;br>
+SSVCは、従来のCVSSのような一律のスコアリングシステムとは異なり、組織固有の状況（使用環境、ビジネスへの影響など）を考慮して評価します。これにより、組織にとって最も重要な脆弱性に優先的に対応できます。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>自動化による効率化&lt;/strong>&lt;br>
+SSVCは、自動化が可能であり、以下のプロセスを通じて効率化を促進します。
+これにより、脆弱性の検出から対応までの時間を大幅に短縮し、人的ミスの削減にもつながります。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>脆弱性スキャナと連携して検出された脆弱性を自動的にSSVCの決定木に入力する&lt;/li>
+&lt;li>脅威インテリジェンスフィードと連携し、最新の攻撃トレンドを評価に反映する&lt;/li>
+&lt;li>チケットシステムと連携し、優先度に基づいて自動的にタスクを割り当てる&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>&lt;strong>柔軟に適用できること&lt;/strong>&lt;br>
+SSVCは、組織の規模や特性に合わせてカスタマイズが可能であり、特定の業界やニーズに対応させることができます。
+これにより、一般的な脆弱性管理手法が持つ一律なアプローチから脱却し、より効果的なリスク管理が可能になります。&lt;/li>
+&lt;/ol></description></item><item><title>ビジネスインパクトを考慮した結果優先度が下がった事例</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter5/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter5/section2/</guid><description>&lt;h1 id="ビジネスインパクトを考慮した結果優先度が下がった事例">
+ ビジネスインパクトを考慮した結果優先度が下がった事例
+ &lt;a class="anchor" href="#%e3%83%93%e3%82%b8%e3%83%8d%e3%82%b9%e3%82%a4%e3%83%b3%e3%83%91%e3%82%af%e3%83%88%e3%82%92%e8%80%83%e6%85%ae%e3%81%97%e3%81%9f%e7%b5%90%e6%9e%9c%e5%84%aa%e5%85%88%e5%ba%a6%e3%81%8c%e4%b8%8b%e3%81%8c%e3%81%a3%e3%81%9f%e4%ba%8b%e4%be%8b">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="トリアージ対象の脆弱性cve-2022-3080">
+ トリアージ対象の脆弱性：CVE-2022-3080
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e5%af%be%e8%b1%a1%e3%81%ae%e8%84%86%e5%bc%b1%e6%80%a7cve-2022-3080">#&lt;/a>
+&lt;/h2>
+&lt;p>CVE-2022-3080はBIND 9と呼ばれるDNSサーバーの実装に発見された脆弱性です。&lt;br>
+この脆弱性は、クライアントからフルサービスリゾルバとして動作するBIND 9のDNSサーバーに対し、細工された問い合わせを送信することにより、特定の条件下でサービス不能（DoS）にさせることができるものです。&lt;br>
+CVSSスコアは7.5となっています。&lt;/p>
+&lt;h2 id="トリアージを実施するa社の状況">
+ トリアージを実施するA社の状況
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e3%82%92%e5%ae%9f%e6%96%bd%e3%81%99%e3%82%8ba%e7%a4%be%e3%81%ae%e7%8a%b6%e6%b3%81">#&lt;/a>
+&lt;/h2>
+&lt;p>A社は複数のブログやWebメディアを運営する企業であり、ページ上に掲載される広告を主な収益源としています。これらのサービスは自社のオンプレミスサーバー上で提供していますが、社内業務に必要なサービスの多くはクラウドへの移行が完了しており、社内業務で自社のオンプレミスサーバーへアクセスすることはほとんどありません。&lt;br>
+A社では、下記の2種類の用途でそれぞれ独立したDNSサーバーを運用しており、いずれも今回の脆弱性の影響を受けるバージョンのBIND 9を利用しています。&lt;/p>
+&lt;ul>
+&lt;li>権威DNSサーバー：ブログやWebメディアのドメインの問い合わせに応答する。&lt;/li>
+&lt;li>フルサービスリゾルバ：社内業務に利用するオフィス端末のインターネットアクセスに利用する。&lt;/li>
+&lt;/ul>
+&lt;h2 id="トリアージ例">
+ トリアージ例
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e4%be%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>A社では、脆弱性の危険度の分類を低・中・高で分類しており、CVSSスコアが7.5の脆弱性の危険度は「高」として分類されます。&lt;br>
+ただし、2種類のDNSサーバーのサービス停止によるビジネスインパクトをそれぞれ下記のように考慮してトリアージを実施しました。&lt;/p>
+&lt;ul>
+&lt;li>権威DNSサーバー：利用者がブログやWebメディアの閲覧ができなくなり、A社の収益の多くを占める広告収入への影響が大きい。&lt;/li>
+&lt;li>フルサービスリゾルバ：社内業務に必要な多くのサービスをクラウド化しており、かつ、代替DNSサーバーとしてISPのDNSサーバーを設定しているため、社内業務への影響は限定的である。&lt;/li>
+&lt;/ul>
+&lt;p>今回の脆弱性はフルサービスリゾルバのみに影響することから、ビジネスインパクトは限定的であると考え、優先度を下げて対応を実施することとしました。&lt;/p></description></item><item><title>危険度がInfoの脆弱性の扱い方</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/columns/columns2/</guid><description>&lt;h1 id="危険度がinfoの脆弱性の扱い方">
+ 危険度がInfoの脆弱性の扱い方
+ &lt;a class="anchor" href="#%e5%8d%b1%e9%99%ba%e5%ba%a6%e3%81%8cinfo%e3%81%ae%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e6%89%b1%e3%81%84%e6%96%b9">#&lt;/a>
+&lt;/h1>
+&lt;p>脆弱性診断のレポートではCritical/High/Medium/Low以外にInfoが検出されることがあります。&lt;br>
+&lt;strong>Info&lt;/strong>とは、診断対象のソフトウェアやシステムにおいて、気になる挙動や推奨するべき設定など、価値のある情報を伝えるためのレベルを指します。Infoには、セキュリティに関する問題だけでなく、その他の情報も含まれることがあります。Info以外に情報、None、脅威がゼロの脆弱性と表現されることもあります。&lt;/p>
+&lt;p>具体的には、下記に該当するものがInfoで報告された脆弱性として分類されています。&lt;/p>
+&lt;ul>
+&lt;li>現時点では脅威が顕在化していないが、セキュリティ上良くない実装や設定に関する指摘&lt;/li>
+&lt;li>セキュリティテスターが気になった挙動に関する指摘(不具合なども含まれます。)&lt;/li>
+&lt;li>セキュリティを向上させるための設定や推奨事項に関する指摘&lt;/li>
+&lt;/ul>
+&lt;p>Infoで報告された脆弱性は、Critical/High/Medium/Lowの脆弱性と比較して、対応の優先度を低く設定して問題ありません。&lt;br>
+ただ、現時点で脅威が顕在化していないため危険度が低いと判断されているものも含まれています。そのため、アプリケーションやシステムに他の脆弱性や脅威が発生した場合には組み合わせて悪用されることで、危険度が上がる可能性があり注意が必要です。&lt;/p>
+&lt;p>Infoで報告された脆弱性については内容を確認し、対応可能であれば調査や改善することを検討するようにしてください。特にブラックボックステストによるセキュリティテストでは決められた時間内でテスターが全ての挙動を調査することは難しいです。
+そのため、指摘された項目については、念のため対象箇所のソースコードを確認することをお勧めします。&lt;br>
+また、Infoにはセキュリティを向上させるためのヒントや参考情報が提供されている場合があります。今後の自社でのセキュアな開発に役立てる情報源として活用することをお勧めします。&lt;/p></description></item><item><title>脆弱性の前提条件</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section2/</guid><description>&lt;h1 id="脆弱性の前提条件">
+ 脆弱性の前提条件
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6">#&lt;/a>
+&lt;/h1>
+&lt;p>脆弱性が報告される際、よく見られるのがソフトウェアのバージョンに基づく影響範囲です。しかし、自社のシステムの使用方法次第では、脆弱性情報に記載されているバージョンを使用していても、影響を受けない場合があります。&lt;/p>
+&lt;p>例えば、脆弱性が特定のモジュールや設定に依存している場合、それらの条件が満たされていなければ影響を受けないことがあります。&lt;/p>
+&lt;h2 id="ソフトウェアバージョン以外の前提条件の例">
+ ソフトウェアバージョン以外の前提条件の例
+ &lt;a class="anchor" href="#%e3%82%bd%e3%83%95%e3%83%88%e3%82%a6%e3%82%a7%e3%82%a2%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e4%bb%a5%e5%a4%96%e3%81%ae%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6%e3%81%ae%e4%be%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>具体的には、以下のようなケースが存在します。&lt;/p>
+&lt;ul>
+&lt;li>特定のモジュールをインストールしている場合にのみ影響がある
+(多くのCVEで該当)&lt;/li>
+&lt;li>特定の機能を利用/有効化している場合のみ影響がある
+(例：Apache HTTP Serverでmod_proxyが有効な場合 等)&lt;/li>
+&lt;li>特定の設定値をon/off、あるいは特定の値に設定している場合のみ影響がある
+(例：log4jなどJavaベースのアプリにてJVMの特定の起動オプションを指定する場合 等)&lt;/li>
+&lt;/ul>
+&lt;h2 id="前提条件の確認方法の例">
+ 前提条件の確認方法の例
+ &lt;a class="anchor" href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6%e3%81%ae%e7%a2%ba%e8%aa%8d%e6%96%b9%e6%b3%95%e3%81%ae%e4%be%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>脆弱性の前提条件を把握するためには、次のような方法が考えられます。
+使用しているライブラリなどのバージョン情報以外の情報を確認したり、参考サイトやベンダー情報を参照します。その上で、自社開発システムの場合などには、該当のソフトウェアの設計書やソースコードを調べる必要があります。&lt;/p>
+&lt;h2 id="システムへの影響を見極めるために確認が必要なこと">
+ システムへの影響を見極めるために確認が必要なこと
+ &lt;a class="anchor" href="#%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%b8%e3%81%ae%e5%bd%b1%e9%9f%bf%e3%82%92%e8%a6%8b%e6%a5%b5%e3%82%81%e3%82%8b%e3%81%9f%e3%82%81%e3%81%ab%e7%a2%ba%e8%aa%8d%e3%81%8c%e5%bf%85%e8%a6%81%e3%81%aa%e3%81%93%e3%81%a8">#&lt;/a>
+&lt;/h2>
+&lt;p>脆弱性情報に加え、自社開発システムに関しても以下の項目を確認する必要があります。ただし、どの範囲まで確認するかは、脆弱性の特性によって異なるため、一概には言えません。&lt;/p>
+&lt;ul>
+&lt;li>システムの構成&lt;/li>
+&lt;li>システムの内部仕様/外部仕様&lt;/li>
+&lt;li>実際の設定値&lt;/li>
+&lt;/ul>
+&lt;p>これらの情報を確認することで、最も一般的な対応策である「ソフトウェアのバージョンアップ」に加え、機能の一時的な無効化など、他の柔軟な対応策を検討できるようになります。それにより、トリアージの優先順位付けがより柔軟に行えるようになります。
+　(例：⁠regreSSHion(CVE-2024-6387)において、LoginGraceTimeの設定で緩和が可能 等)&lt;/p>
+&lt;h2 id="注意">
+ 注意
+ &lt;a class="anchor" href="#%e6%b3%a8%e6%84%8f">#&lt;/a>
+&lt;/h2>
+&lt;p>注意すべき点として、システムを調査する際仕様書を基に判断したものの、その仕様書が古く、実際のシステム環境と一致していない場合や、誤った確認方法を用いたために脆弱性が存在しているにもかかわらず、影響がないと判断してしまうケースがあります。
+運用者のスキル・調査の方法などを踏まえて、「ソフトウェアのバージョンアップ」を優先するほうが安全であるケースがあるため、注意して判断を行ってください。&lt;/p></description></item><item><title>例外対応の想定</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter4/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter4/section2/</guid><description>&lt;h1 id="例外対応の想定">
+ 例外対応の想定
+ &lt;a class="anchor" href="#%e4%be%8b%e5%a4%96%e5%af%be%e5%bf%9c%e3%81%ae%e6%83%b3%e5%ae%9a">#&lt;/a>
+&lt;/h1>
+&lt;p>実際の現場では修正コストの観点以外にも、様々な理由で、基本方針通りの対応が難しいケースに遭遇すると思います。&lt;/p>
+&lt;ul>
+&lt;li>例外対応の条件
+&lt;ul>
+&lt;li>長時間のシステム停止が発生する場合(運用上サービスの停止を許容できないなど)&lt;/li>
+&lt;li>修正に長期間の対応が必要となる場合（修正対応をした場合に本来予定しているリリースに間に合わなくなるなど）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>そのため、根本的な修正が難しい場合には、例外的な対応を行うことになるでしょう。&lt;br>
+その際、どのような対応を行うことができるか、事前にある程度具体的な選択肢を用意しておくことが大切です。&lt;br>
+ここでは想定しておくべき選択肢の例をいくつか記載します。&lt;/p>
+&lt;ul>
+&lt;li>期限
+&lt;ul>
+&lt;li>例外対応の実施期限の設定（根本的対策を実施する目途を決めておく）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>緩和策の選択肢
+&lt;ul>
+&lt;li>公開されている緩和策の実施（根本対策ではない暫定的な対応策）&lt;/li>
+&lt;li>アクセス制限の実施&lt;/li>
+&lt;li>セキュリティ製品などの利用（IPS・WAFなどで防御を行う）&lt;/li>
+&lt;li>提供機能やサービスの縮退&lt;/li>
+&lt;li>攻撃に備えて監視面を強化する&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>内部的な対応フロー
+&lt;ul>
+&lt;li>例外対応が発生した際の意思決定者は誰になるのか、その際どのようなフローで対応の内容を決定するのか事前に決めておくようにする。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>なお、あまりにも例外的な対応が多くなりすぎてしまう場合には、そもそもの基本方針の取り決めについても見直すべきです。&lt;/p></description></item><item><title>EPSS</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section3/</guid><description>&lt;h1 id="epss">
+ EPSS
+ &lt;a class="anchor" href="#epss">#&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.first.org/epss">EPSS(Exploit Prediction Scoring System)&lt;/a>のスコアは、各脆弱性に対して0から1の範囲で算出され、スコアが高いほど攻撃に利用される可能性が高くなります。&lt;/p>
+&lt;p>&lt;strong>スコアリング方法:&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>CVEが割り当てられた脆弱性についての詳細を収集します。&lt;/li>
+&lt;li>ExploitDBやKEVカタログ(Known Exploited Vulnerabilities catalog)から公開されているエクスプロイトコードや攻撃に使用された実例を収集します。&lt;/li>
+&lt;li>上記の情報をEPSSのモデルからモデリング手法を用いてスコアを算出します。&lt;/li>
+&lt;/ol>
+&lt;h2 id="どのように使うのか">
+ どのように使うのか
+ &lt;a class="anchor" href="#%e3%81%a9%e3%81%ae%e3%82%88%e3%81%86%e3%81%ab%e4%bd%bf%e3%81%86%e3%81%ae%e3%81%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>CVEが割り当てられた脆弱性のリスク評価にはCVSSが用いられ、組織内で定められたパラメータが採用されることが多いですが、&lt;strong>まだ発生していないリスクの発生可能性を見積もるのは非常に難しい&lt;/strong>といえます。&lt;/p>
+&lt;p>そこで、EPSSのように、脆弱性が実際に悪用される確率を表す指標を採用することも効果的です。
+EPSSは実行環境を考慮していないため、リスク評価の完全な指標として用いることは推奨されませんが、&lt;strong>他に脆弱性の発生可能性を見積もる手段がない場合には有効&lt;/strong>です。&lt;/p>
+&lt;p>トリアージのパラメータとして必ずしも採用する必要はありませんが、トリアージ担当者は「判断の指標」として知っておくべきです。&lt;/p>
+&lt;h2 id="トリアージ設定におけるepss確認のメリット">
+ トリアージ設定におけるEPSS確認のメリット
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e8%a8%ad%e5%ae%9a%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8bepss%e7%a2%ba%e8%aa%8d%e3%81%ae%e3%83%a1%e3%83%aa%e3%83%83%e3%83%88">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;strong>脆弱性の優先順位付け&lt;/strong>&lt;br>
+脆弱性が実際に悪用される可能性を考慮して、優先順位を設定できます。組織内に脆弱性の危険度設定に関するノウハウがない場合や、CERTが設立されたばかりの際には、危険度設定の参考値としてEPSSを活用できます。&lt;br>
+ただし、EPSSはあくまで予測値であり、全ての脆弱性に設定されているわけではない点に留意する必要があります。&lt;br>
+EPSSを指標として採用する場合、3章の後半で紹介されているKEVカタログなどの公開情報と組み合わせて使用することを推奨します。&lt;/p></description></item><item><title>Exploitの流通状況</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section3/</guid><description>&lt;h1 id="exploitの流通状況">
+ Exploitの流通状況
+ &lt;a class="anchor" href="#exploit%e3%81%ae%e6%b5%81%e9%80%9a%e7%8a%b6%e6%b3%81">#&lt;/a>
+&lt;/h1>
+&lt;p>脆弱性を悪用する攻撃コードの流通状況を把握することで、対応までの時間的猶予（緊急度）をより正確に判断できます。&lt;/p>
+&lt;p>以下のExploit流通状況の中では、「攻撃事例がある」場合が最も緊急性が高く、即座に対応すべき脆弱性と判断できます。&lt;/p>
+&lt;ul>
+&lt;li>攻撃事例がある&lt;/li>
+&lt;li>脆弱性の実証コード（PoC）が出回っている
+（PoCが正しいものであるかの確認が必要）&lt;/li>
+&lt;li>理論的に脆弱なだけで実証されていない&lt;/li>
+&lt;/ul>
+&lt;blockquote class="book-hint info">
+&lt;p>&lt;strong>補足&lt;/strong>&lt;br>
+Exploitの流通状況だけで対策の優先順位を決定することは推奨されません。即座に攻撃される可能性があるのか、攻撃手段が流通してしまっているのかを元に判断することを意図しています。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="どのように情報収集するのか">
+ どのように情報収集するのか
+ &lt;a class="anchor" href="#%e3%81%a9%e3%81%ae%e3%82%88%e3%81%86%e3%81%ab%e6%83%85%e5%a0%b1%e5%8f%8e%e9%9b%86%e3%81%99%e3%82%8b%e3%81%ae%e3%81%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>悪用されやすかったり、利用者が多いプロダクトの脆弱性については、ニュースサイトや第1章で紹介した脆弱性情報サイト（ &lt;a href="https://www.jpcert.or.jp/">JPCERT/CC&lt;/a>、&lt;a href="https://jvn.jp/">JVN&lt;/a>など）から情報が得られやすいです。&lt;br>
+しかし、注目される脆弱性は限られているため、使用しているプロダクトに関連する攻撃コードの流通状況については、常に注意して情報を収集する必要があります。&lt;/p>
+&lt;h3 id="実証コードpocの掲載サイト">
+ 実証コード（PoC）の掲載サイト
+ &lt;a class="anchor" href="#%e5%ae%9f%e8%a8%bc%e3%82%b3%e3%83%bc%e3%83%89poc%e3%81%ae%e6%8e%b2%e8%bc%89%e3%82%b5%e3%82%a4%e3%83%88">#&lt;/a>
+&lt;/h3>
+&lt;p>脆弱性の実証コード（PoC: Proof of Concept）の掲載サイトや脆弱性スキャンツールベンダーのサイトなどから情報が得られやすいです。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.exploit-db.com/">ExploitDB&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.rapid7.com/db/?q=&amp;amp;type=metasploit">Vulnerability &amp;amp; Exploit Database&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.vulnerability-lab.com/index.php">vulnerability-lab&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://packetstormsecurity.com/files/tags/exploit/">Packet Storm Security&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="悪用された脆弱性リスト">
+ 悪用された脆弱性リスト
+ &lt;a class="anchor" href="#%e6%82%aa%e7%94%a8%e3%81%95%e3%82%8c%e3%81%9f%e8%84%86%e5%bc%b1%e6%80%a7%e3%83%aa%e3%82%b9%e3%83%88">#&lt;/a>
+&lt;/h3>
+&lt;p>米国CISA（Cybersecurity＆Infrastructure Security Agency）が提供する、実際に悪用が確認された脆弱性リストである&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">KEVカタログ&lt;/a>（Known Exploited Vulnerabilities catalog）を参照することも有効です。ただし、脆弱性が公開された直後の場合、悪用がまだ確認されていないこともあるため、対応の優先順位を決定する際には注意が必要です。&lt;br>
+継続的にKEVカタログから情報収集する場合は、情報更新時にお知らせを受領するための登録フォームがあります。&lt;/p>
+&lt;h3 id="検索">
+ 検索
+ &lt;a class="anchor" href="#%e6%a4%9c%e7%b4%a2">#&lt;/a>
+&lt;/h3>
+&lt;p>Web検索や脆弱性情報管理ツールでExploitの流通状況を調べる手段もあります。&lt;br>
+検索クエリに「CVE番号」や「CVE番号　PoC」、「CVE番号　&amp;ldquo;in the wild&amp;rdquo;」などを設定しての検索は有効です。ただし、誤った情報や偽PoC、偽攻撃ツールも存在しているため、信頼できる情報であるのか慎重な判断が必要です。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://flashpoint.io/ignite/vulnerability-intelligence/">Flashpoint Vulnerability Intelligence - VulnDB&lt;/a>（有償）&lt;/li>
+&lt;/ul>
+&lt;h2 id="自社開発のアプリケーション等の場合">
+ 自社開発のアプリケーション等の場合
+ &lt;a class="anchor" href="#%e8%87%aa%e7%a4%be%e9%96%8b%e7%99%ba%e3%81%ae%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e7%ad%89%e3%81%ae%e5%a0%b4%e5%90%88">#&lt;/a>
+&lt;/h2>
+&lt;p>自社開発のアプリケーションは一般的なプロダクトではないため、実証コード掲載サイトやKEVカタログを参照しても、Exploitの流通状況が把握できないことが多々あります。&lt;br>
+「脆弱性の前提条件」の項目や脆弱性診断を実施したベンダーからの報告内容を基に、同様の攻撃手法が実行される可能性やその影響について調査する必要があります。&lt;/p></description></item><item><title>トリアージガイドラインの適用範囲を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section2/</guid><description>&lt;h1 id="トリアージガイドラインの適用範囲を決める">
  トリアージガイドラインの適用範囲を決める
  &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e3%82%ac%e3%82%a4%e3%83%89%e3%83%a9%e3%82%a4%e3%83%b3%e3%81%ae%e9%81%a9%e7%94%a8%e7%af%84%e5%9b%b2%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
 &lt;/h1>
@@ -31,19 +469,121 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 - 利用者数が1,000人以上
 - 可用性99.5％以上
 - 個人情報、機密情報の有無
-&lt;/code>&lt;/pre></description></item><item><title>脆弱性情報収集方法を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</guid><description>&lt;h1 id="脆弱性情報収集方法を決める">
- 脆弱性情報収集方法を決める
- &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e6%83%85%e5%a0%b1%e5%8f%8e%e9%9b%86%e6%96%b9%e6%b3%95%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
+&lt;/code>&lt;/pre></description></item><item><title>経営者の指示による優先度変更</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter5/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter5/section3/</guid><description>&lt;h1 id="経営者の指示による優先度変更">
+ 経営者の指示による優先度変更
+ &lt;a class="anchor" href="#%e7%b5%8c%e5%96%b6%e8%80%85%e3%81%ae%e6%8c%87%e7%a4%ba%e3%81%ab%e3%82%88%e3%82%8b%e5%84%aa%e5%85%88%e5%ba%a6%e5%a4%89%e6%9b%b4">#&lt;/a>
+&lt;/h1>
+&lt;p>経営判断により脆弱性対応よりもリリースを優先しなければいけない案件が存在することもあります。&lt;/p>
+&lt;p>例として次のような事例を考えてみましょう。&lt;br>
+「会社の代表が株主総会で会社の認証システムをすべて顔認証システムに3ヶ月以内に切り替えると株主に伝えて社員がその場で初めて内容を認識した」とした場合です。&lt;/p>
+&lt;p>上記の場合、3ヶ月という短納期の中で開発から脆弱性診断を実施するという流れの中で他案件との兼ね合いや他フローとの兼ね合いで十全に脆弱性診断を実施ができず現場としては無理難題であるため期限内に組織で定められた脆弱性トリアージ実施をしてリリースすることが難しい可能性が考えられます。&lt;/p>
+&lt;p>しかし、ビジネスインパクトを考えた際に、IRとして会社代表が出していることから、ブランドイメージの悪化や株価への悪影響が考えられます。&lt;/p>
+&lt;p>そのため、上記の場合にはトップダウンで実施しなければならない案件として例外的な対応を行う必要があります。&lt;/p>
+&lt;p>仮に会社の脆弱性トリアージの実施規定として以下のようなものがあるとします。&lt;/p>
+&lt;p>【社内規定での脆弱性トリアージ】&lt;/p>
+&lt;ul>
+&lt;li>リスク値は緊急、高、中、低の4段階で考えられるとする&lt;/li>
+&lt;li>リスク中以上の脆弱性はリリース前に全て修正して実施する&lt;/li>
+&lt;/ul>
+&lt;p>今回のケースでは、3ヶ月という短納期の中で実施しなければならないため、十分な脆弱性診断の期間と修正期間が無く、脆弱性トリアージ規定を満たせない可能性があります。つまり、想定していたよりもリスクが高い状態のままリリースするという経営判断をすることになります。&lt;/p>
+&lt;p>そのため、以下のような例外を作り、組織として最終的にリスクを減らすための方針を立てることもあります。&lt;/p>
+&lt;p>【組織的例外フロー】&lt;/p>
+&lt;ul>
+&lt;li>組織の代表のトップダウン案件は他案件より優先して脆弱性診断を実施する&lt;/li>
+&lt;li>組織の代表のトップダウン案件で検出された脆弱性は、リスク高以上はリリース前に対策を実施して、リリース後1ヶ月以内にリスク中の脆弱性の対策を実施する&lt;/li>
+&lt;li>残存した脆弱性に関してインシデントが起きた際には組織の代表が責任を取る&lt;/li>
+&lt;/ul>
+&lt;p>日常の運用とは異なる例外的なフローを設けたことで、ビジネスインパクトを考慮することができました。&lt;/p>
+&lt;p>(経営者が判断したポイントは？)&lt;br>
+・3か月でシステムをリリースすることを決定した
+・組織的例外フローを受け入れた（リスク受容した）
+・事故ったときの責任は下々ではなく経営者だぞ&lt;/p>
+&lt;p>今回の例の中で、経営者が判断したポイントとなるのは下記の3点となります。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>短期間でのリリース方針&lt;br>
+３ヶ月という短期間でのシステムリリースを決定することで、ビジネス価値の最大化に繋がります。
+しかし、今回のケースとは異なり、脆弱性が多数発見された場合には、経営者の判断で、リリース時には重要度の高い中でも特に重要なものに対して優先的に対応を行うといったトリアージが必要となります。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>例外承認 (リスク受容)&lt;br>
+経営者が組織的例外フローを受け入れて実施することで、迅速な意思決定が可能となり、責任の所在も明確になります。しかし、例外的なフローはあくまで緊急時や特別な状況における対応であり、推奨されるものではありません。そのため、例外承認を行う場合には、経営者（責任者）が慎重に判断し、適切なリスク評価を行うことが重要です。&lt;br>
+さらに、例外承認後には脆弱性をトレースし、対応期限を設定することが求められます。また、監視体制の強化やリスク低減策の導入など、継続的な管理が効果的です。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>インシデントの担当責任を明確にする&lt;br>
+リスクを残したままサービスをリリースすることで、インシデントが発生する可能性があります。万が一インシデントが発生した場合、その責任はセキュリティ担当者ではなく、経営者が負うことでビジネス全体に関わる問題であるとしてリスク管理を明確にできます。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>経営判断として、時にはビジネスが優先されることもあります。しかし、脆弱性を放置したことによって、それ以上のダメージを負うことも考えられます。
+経営者には、そういったリスクがあることも伝えた上で、経営判断を行ってもらう必要があるでしょう。&lt;/p></description></item><item><title>脆弱性の影響範囲の調査</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section3/</guid><description>&lt;h1 id="脆弱性の影響範囲の調査">
+ 脆弱性の影響範囲の調査
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e5%bd%b1%e9%9f%bf%e7%af%84%e5%9b%b2%e3%81%ae%e8%aa%bf%e6%9f%bb">#&lt;/a>
 &lt;/h1>
 &lt;p>脆弱性情報の収集や脆弱性に関する具体的な内容や原因を理解するためには、セキュリティに関する専門知識が必要になります。さまざまな組織や機関から脆弱性情報が公開されていますが、最初は信頼できる情報源から脆弱性情報を収集するようにしましょう。
 以下は、収集する情報源のサイト一例です。&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://www.jpcert.or.jp/">JPCERT/CC&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://jvn.jp/">JVN&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://nvd.nist.gov">NVD&lt;/a>（英語サイトのみ）&lt;/li>
 &lt;/ul>
-&lt;p>また、脆弱性診断を実施して脆弱性を調べるのも有効です。脆弱性診断の対象は、あらかじめ診断事業者と発注者間で決められていることが一般的です。そのため、報告される脆弱性情報は対象が限定的ですが、報告された範囲に限らず、類似の脆弱性が他のシステムにも影響がないか確認するようにしてください。&lt;/p></description></item><item><title>トリアージ基準を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</guid><description>&lt;h1 id="トリアージ基準を決める">
- トリアージ基準を決める
- &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e5%9f%ba%e6%ba%96%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
+&lt;p>また、脆弱性診断を実施して脆弱性を調べるのも有効です。脆弱性診断の対象は、あらかじめ診断事業者と発注者間で決められていることが一般的です。そのため、報告される脆弱性情報は対象が限定的ですが、報告された範囲に限らず、類似の脆弱性が他のシステムにも影響がないか確認するようにしてください。&lt;/p></description></item><item><title>Exploitの実現性</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter2/section4/</guid><description>&lt;h1 id="exploitの実現性">
+ Exploitの実現性
+ &lt;a class="anchor" href="#exploit%e3%81%ae%e5%ae%9f%e7%8f%be%e6%80%a7">#&lt;/a>
+&lt;/h1>
+&lt;p>脆弱性が存在しても、攻撃を実行できる人の数やスキルによって、その危険度は変わることがあります。&lt;/p>
+&lt;h2 id="対象システムへのアクセス">
+ 対象システムへのアクセス
+ &lt;a class="anchor" href="#%e5%af%be%e8%b1%a1%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%b8%e3%81%ae%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9">#&lt;/a>
+&lt;/h2>
+&lt;p>CVSSの攻撃元区分（AV: Attack Vector）は、脆弱性がどのような経路で攻撃可能かを評価しており、「ネットワーク」「隣接」「ローカル」「物理」といった選択肢があります。&lt;br>
+物理アクセスが必要な脆弱性でも、自動販売機のように誰でもアクセス可能な場所にあるシステムと、防犯ゲートで厳重に守られたデータセンターの奥に設置されたシステムでは、攻撃の実現性が大きく異なります。&lt;br>
+正当な権限を持った人による内部犯行を脅威として想定するかによっても異なります。&lt;/p>
+&lt;h2 id="複数の脆弱性の組み合わせ">
+ 複数の脆弱性の組み合わせ
+ &lt;a class="anchor" href="#%e8%a4%87%e6%95%b0%e3%81%ae%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e7%b5%84%e3%81%bf%e5%90%88%e3%82%8f%e3%81%9b">#&lt;/a>
+&lt;/h2>
+&lt;p>Webアプリケーションでログイン時にセッションIDを変更しない場合、セッションフィクセイション脆弱性が報告されることがあります。しかし、この挙動だけで即座に被害が発生するわけではありません。攻撃者が指定したセッションIDを、何らかの手段で被害者に強制的に使用させる別の脆弱性が必要です。&lt;br>
+例えば、セッションアダプション、クッキーモンスター、クロスサイトスクリプティングなどが該当します。これらの脆弱性が適切に対応されている場合、危険度は低くなるでしょう。&lt;/p>
+&lt;h2 id="exploitの開発難易度">
+ Exploitの開発難易度
+ &lt;a class="anchor" href="#exploit%e3%81%ae%e9%96%8b%e7%99%ba%e9%9b%a3%e6%98%93%e5%ba%a6">#&lt;/a>
+&lt;/h2>
+&lt;p>例えばSQLインジェクション脆弱性で、&lt;code>'and'A'='A&lt;/code>といったチートシートに載っている簡単なパターンや、脆弱性診断ツールで使用される典型的な攻撃パターンが成功する脆弱性が報告された場合、技術レベルの低い攻撃者でも攻撃可能である可能性が高いといえます。&lt;br>
+一方で、使える文字が限られていたり、WAFが設置されているなどで、それらの制限を回避する必要がある場合、それを行える高度な技術を持った攻撃者のみが脅威となります。対象となるサーバーソフトウェアやブラウザOSなどに対する深い知識が必要な場合も同様です。&lt;/p>
+&lt;h2 id="攻撃の難易度の判断">
+ 攻撃の難易度の判断
+ &lt;a class="anchor" href="#%e6%94%bb%e6%92%83%e3%81%ae%e9%9b%a3%e6%98%93%e5%ba%a6%e3%81%ae%e5%88%a4%e6%96%ad">#&lt;/a>
+&lt;/h2>
+&lt;p>攻撃難易度を判断するためには、脆弱性や攻撃手法に対する専門的な知識が必要です。&lt;br>
+まずは脆弱性診断の報告書などを確認し、実害につながることが実証されているか、PoC(Proof of Concept: 概念実証)が記載されているかどうかを確認してください。&lt;br>
+PoCが示されていない場合や、脆弱性の可能性のみが示唆されていて現実的な被害に結びつくか不明な場合には、自身でExploitを作成してみる必要があるかもしれません。&lt;br>
+診断ベンダーによっては、実際の攻撃の可否までは検証せず、不正な挙動を見つけたという段階で報告してくる場合があります（被害につながるかわからないけれどもとりあえずすべて修正するつもりであれば、この報告方針の方が有用です）。&lt;/p>
+&lt;p>なお、脅威が小さいと判断した場合でも油断は禁物です。Exploitの流通状況で述べたように、&lt;strong>ExploitやPoC、前提情報が公開されてしまった瞬間に状況は一変します。&lt;/strong>&lt;br>
+Exploitの難易度は、脆弱性が発覚し、Exploitが公開されないことを祈っている初期段階での判断基準として利用するにとどめ、長期的な判断基準として利用することは避けた方が良いでしょう。&lt;/p></description></item><item><title>SBOM</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section4/</guid><description>&lt;h1 id="sbom">
+ SBOM
+ &lt;a class="anchor" href="#sbom">#&lt;/a>
+&lt;/h1>
+&lt;p>現代のソフトウェア開発では、複数のモジュールやシステムを組み合わせた構成が一般的です。そのため、システムで使用されているモジュールやライブラリ、フレームワークなどのソフトウェア依存関係を完全に把握するのは難しくなっています。&lt;/p>
+&lt;p>このような課題を解決する手法として、SBOM（Software Bill of Materials）を用いた管理手法が注目されています。SBOMとは、ソフトウェア製品に含まれるコンポーネント(部品)をリスト化したもので、ソフトウェアのコンポーネント一覧表を指します。実際には、SBOMに対応したリストを作成でき、SBOMの管理を行えるツールを使用して管理を行います。&lt;/p>
+&lt;p>SBOMを導入することで、新たな脆弱性が公表された際に、その影響を受けるソフトウェアを即座に特定できるようになります。これにより、脆弱性の管理だけでなく、ライセンス違反やサポート期限が切れたソフトウェアの確認にも活用できます。&lt;/p>
+&lt;p>また、経済産業省により「&lt;a href="https://www.meti.go.jp/press/2024/08/20240829001/20240829001.html">ソフトウェア管理に向けたSBOM（Software Bill of Materials）の導入に関する手引ver2.0&lt;/a>」が公開されており、注目されているSBOMですが、脆弱性管理やライセンス管理のメリットがある一方で、完全に解決できない課題やSBOMを運用する上での課題もあります。&lt;/p>
+&lt;p>&lt;strong>SBOM導入のメリット&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ソフトウェアコンポーネント管理の効率化・自動化、管理工数の削減&lt;/li>
+&lt;li>新たな脆弱性が発見された際に影響を受けるソフトウェアに含まれるコンポーネントの特定、特定までの時間短縮&lt;/li>
+&lt;li>OSSなどのライセンス情報の管理&lt;/li>
+&lt;li>EoS(End of Support)、EoL(End of Life)の管理&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>SBOM導入に関する課題&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>SBOMの管理対象とするコンポーネントの範囲が不明確だと、効果的な活用ができない&lt;/li>
+&lt;li>SBOMを導入すための環境整備や学習に工数を要する&lt;/li>
+&lt;li>コンポーネントの検知漏れや誤検知&lt;/li>
+&lt;li>SBOM出力結果の精査に多くの工数が掛かる&lt;/li>
+&lt;/ul></description></item><item><title>トリアージで決めるべきこと</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section4/</guid><description>&lt;h1 id="トリアージで決めるべきこと">
+ トリアージで決めるべきこと
+ &lt;a class="anchor" href="#%e3%83%88%e3%83%aa%e3%82%a2%e3%83%bc%e3%82%b8%e3%81%a7%e6%b1%ba%e3%82%81%e3%82%8b%e3%81%b9%e3%81%8d%e3%81%93%e3%81%a8">#&lt;/a>
 &lt;/h1>
 &lt;p>収集した脆弱性情報を効率的に対応するためには、統一的なトリアージの対応基準を設定することが重要です。
 トリアージの対応基準軸として、対象資産の重要度と脆弱性の危険度を基に対応優先度を決定できるようにしましょう。&lt;/p>
@@ -51,20 +591,13 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 &lt;p>対象資産の重要度と脆弱性の危険度については、&lt;a href="#%e5%af%be%e8%b1%a1%e3%81%ae%e9%87%8d%e8%a6%81%e5%ba%a6%e8%a9%95%e4%be%a1">対象の重要度評価&lt;/a>と&lt;a href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e5%8d%b1%e9%99%ba%e5%ba%a6%e8%a9%95%e4%be%a1">脆弱性の危険度評価&lt;/a>に記載していますので、そちらをご確認ください。&lt;/p>
 &lt;p>対応優先度の区分は、過度に複雑化すると管理や運用が難しくなり、単純すぎると適切なトリアージが困難になるため、3,4段階程度の区分に分けることをお勧めします。それぞれの区分に応じた対応要否と対応期限を決めるようにしましょう。
 対応の要否と期限の決め方については、&lt;a href="../section5/">対応の要否と期限を決める&lt;/a>に記載していますので、そちらをご確認ください。&lt;/p>
-&lt;p>以下の順で基準を決めましょう。&lt;/p>
-&lt;ul>
-&lt;li>対象の重要度評価&lt;/li>
-&lt;li>脆弱性の危険度評価&lt;/li>
-&lt;li>対応の優先度評価&lt;/li>
-&lt;li>対応の要否と期限の評価&lt;/li>
-&lt;/ul>
 &lt;h2 id="対象の重要度評価">
  対象の重要度評価
  &lt;a class="anchor" href="#%e5%af%be%e8%b1%a1%e3%81%ae%e9%87%8d%e8%a6%81%e5%ba%a6%e8%a9%95%e4%be%a1">#&lt;/a>
 &lt;/h2>
 &lt;p>脆弱性の評価が完了したら、次に資産の重要度を評価します。
 まずは重要度の評価基準の選定をするところから始めると良いでしょう。
-顧客情報や機密性の高い情報が侵害された場合のビジネスインパクトを検討し、対象システムが扱う情報資産の重要度に基づき対策の優先度を設定できます。
+顧客情報や機密性の高い情報が侵害された場合のビジネスインパクトを検討し、対象システムが扱う情報資産の重要度に基づき対策の優先度を設定します。
 以下は、評価分類の一例です。&lt;/p>
 &lt;ul>
 &lt;li>
@@ -124,7 +657,88 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 &lt;/li>
 &lt;/ul>
 &lt;p>CVSSのみで危険度を評価するのは専門知識がない人でもできる単純な方法ですが、実際の攻撃リスクと乖離する可能性があります。
-今後の公開を予定している本ドキュメントの2章以降では、専門的な知識を活用して脆弱性の危険度や影響範囲をより正確に評価する方法を紹介する予定です。&lt;/p></description></item><item><title>対応の要否と期限を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</guid><description>&lt;h1 id="対応の要否と期限を決める">
+2章以降では、専門的な知識を活用して脆弱性の危険度や影響範囲をより正確に評価する方法を紹介します。&lt;/p></description></item><item><title>CISA KEVカタログ</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section5/</guid><description>&lt;h1 id="cisa-known-exploited-vulnerabilities-kev-カタログ">
+ CISA Known Exploited Vulnerabilities (KEV) カタログ
+ &lt;a class="anchor" href="#cisa-known-exploited-vulnerabilities-kev-%e3%82%ab%e3%82%bf%e3%83%ad%e3%82%b0">#&lt;/a>
+&lt;/h1>
+&lt;p>&lt;a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog">Known Exploited Vulnerabilities (KEV) カタログ&lt;/a>（悪用された既知の脆弱性カタログ）は米国土安全保障省（DHS）のサイバーセキュリティ・インフラストラクチャセキュリティ庁（CISA: Cybersecurity and Infrastructure Security Agency）が公開している、悪用が観測された脆弱性の一覧をまとめたカタログです。もともとは連邦政府機関のシステムを対象に、脆弱性を悪用した攻撃へ対処するために作成されたものです。&lt;/p>
+&lt;p>2024年11月現在、このカタログには、VPN機器のRCE脆弱性やOSの特権昇格の脆弱性など、1200件近くの脆弱性が登録されています。カタログへの登録条件は下記の3つです。&lt;/p>
+&lt;ol>
+&lt;li>CVE番号が割り当てられていること&lt;/li>
+&lt;li>悪用がされている確たる証拠があること&lt;/li>
+&lt;li>ベンダーからのアップデートなどの明確な対策方法があること&lt;/li>
+&lt;/ol>
+&lt;p>このうち、「2. 悪用がされている確たる証拠があること」には、脆弱でないシステムやハニーポットに対する悪用の試行も含まれていますが、スキャン行為やエクスプロイトの研究、PoCの公開はこれに含まれません。&lt;/p>
+&lt;p>他組織への攻撃ですでに悪用されたことのある脆弱性は、別の攻撃でも利用されることが多いため、迅速に対処するべき脆弱性であると考えられます。&lt;/p></description></item><item><title>Risk Rating Framework: OWASP Risk Rating Methodology</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter3/section6/</guid><description>&lt;h1 id="risk-rating-framework-owasp-risk-rating-methodology">
+ Risk Rating Framework: OWASP Risk Rating Methodology
+ &lt;a class="anchor" href="#risk-rating-framework-owasp-risk-rating-methodology">#&lt;/a>
+&lt;/h1>
+&lt;p>OWASP Risk Rating Methodologyは、OWASPが提供する、アプリケーションセキュリティに特化したリスク評価手法です。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://owasp.org/www-community/OWASP_Risk_Rating_Methodology">https://owasp.org/www-community/OWASP_Risk_Rating_Methodology&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>本評価手法では、以下のような評価基準で判定しています。&lt;/p>
+&lt;ul>
+&lt;li>リスク = 可能性 × 影響（Risk = Likelihood x Impact）
+&lt;ul>
+&lt;li>可能性
+&lt;ul>
+&lt;li>（脅威エージェントの要因 ＋ 脆弱性の要因） / 2&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>影響
+&lt;ul>
+&lt;li>（技術的要因 ＋ ビジネスへの影響要因） / 2&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>「リスク（Risk）」は、「可能性」と「影響」を複数の要因に分けて評価され、各要因に基づきスコアを算出し、その平均値で評価を行います。&lt;/p>
+&lt;p>以下に概要を示します。&lt;/p>
+&lt;p>「可能性（Likelihood）」は、特定の脆弱性が攻撃者に発見され、悪用される可能性の大きさを指します。&lt;/p>
+&lt;p>以下の2つの要因についてスコアリングし、合計平均値を可能性の値として利用します。&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>脅威エージェントの要因（Threat Agent Factors）&lt;/strong>&lt;br>
+想定する攻撃者（Threat Agent）による攻撃が成功する可能性を推定します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>スキルレベル（Skill Level）&lt;/li>
+&lt;li>動機（Motive）&lt;/li>
+&lt;li>機会（Opportunity）&lt;/li>
+&lt;li>サイズ（Size）&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>&lt;strong>脆弱性の要因（Vulnerability Factors）&lt;/strong>&lt;br>
+対象とする脆弱性について、発見や悪用される可能性を推定します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>発見の容易さ（Ease of Discovery）&lt;/li>
+&lt;li>悪用の容易さ（Ease of Exploit）&lt;/li>
+&lt;li>認識（Awareness）&lt;/li>
+&lt;li>侵入検出（Intrusion Detection）&lt;/li>
+&lt;/ul>
+&lt;p>「影響（Impact）」は、攻撃が成功した際に影響がある以下の2種類の影響について想定します。&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>技術的要因（Technical Impact Factors）&lt;/strong>&lt;br>
+アプリケーションや使用するデータ、提供する機能に対する技術的影響を推定します。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>機密性の喪失（Loss of Confidentiality）&lt;/li>
+&lt;li>整合性の損失（Loss of Integrity）&lt;/li>
+&lt;li>可用性の損失（Loss of Availability）&lt;/li>
+&lt;li>説明責任の喪失（Loss of Accountability）&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>&lt;strong>ビジネスへの影響要因（Business Imapct Factors）&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>経済的損失（Financial damage）&lt;/li>
+&lt;li>風評被害（Reputation damage）&lt;/li>
+&lt;li>コンプライアンス違反（Non-compliance）&lt;/li>
+&lt;li>プライバシー侵害（Privacy violation）&lt;/li>
+&lt;/ul>
+&lt;p>これらの値を元に、リスクの重大度をマトリックスから導き出します。&lt;/p></description></item><item><title>対応の要否と期限を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section5/</guid><description>&lt;h1 id="対応の要否と期限を決める">
  対応の要否と期限を決める
  &lt;a class="anchor" href="#%e5%af%be%e5%bf%9c%e3%81%ae%e8%a6%81%e5%90%a6%e3%81%a8%e6%9c%9f%e9%99%90%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
 &lt;/h1>
@@ -162,7 +776,7 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
-&lt;p>また、これ以外にも対応要否や対応期限を決めるいくつかのパターンを例として下記に記載しています。なお、本節で提示しているパターンは簡易な対応であり、より高度な対応について知りたい方は4章を参照してください。&lt;/p>
+&lt;p>また、これ以外にも対応要否や対応期限を決めるいくつかのパターンを例として下記に記載しています。なお、本節で提示しているパターンは簡易な対応であり、より高度な対応について知りたい方は４章を参照してください。&lt;/p>
 &lt;ul>
 &lt;li>
 &lt;p>対応の要否&lt;/p>
@@ -204,9 +818,9 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 &lt;p>利用しているソフトウェア等について、脆弱性情報を収集し、脆弱性の危険度が「高」の脆弱性については迅速に、危険度「中」は公開までにセキュリティパッチの適用や最新版へのバージョンアップによるアップデートを実施してください。&lt;/p>
 &lt;/blockquote>
 &lt;p>それ以外の脆弱性については、セキュリティパッチの適用や最新版へのバージョンアップを行うかどうかを、脆弱性によるシステムへの影響等を考慮して判断してください。&lt;/p>
-&lt;/blockquote></description></item><item><title>脆弱性の管理方法を決める</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</guid><description>&lt;h1 id="脆弱性の管理方法を決める">
- 脆弱性の管理方法を決める
- &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95%e3%82%92%e6%b1%ba%e3%82%81%e3%82%8b">#&lt;/a>
+&lt;/blockquote></description></item><item><title>脆弱性の管理方法</title><link>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://webapppentestguidelines.github.io/TriageGuidelines/docs/chapter1/section6/</guid><description>&lt;h1 id="脆弱性の管理方法">
+ 脆弱性の管理方法
+ &lt;a class="anchor" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%81%ae%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95">#&lt;/a>
 &lt;/h1>
 &lt;p>それぞれの脆弱性への対応状況を適切に管理することで対応漏れやミスを防ぐことができます。
 ここでは記録すべき情報と管理方法の例を記載します。自組織にとって管理しやすいツールを選択してください。&lt;/p>
@@ -329,5 +943,5 @@ CISOは、当社規程の定めに従い任命されます。CISOは、当社が
 この基準で実際にトリアージをしてみると、例えば優先度高に分類した対象が大量出てきてしまって、さらにその中で優先順位付けが必要になる、ということがあるかもしれません。あるいは、この基準で算出した脆弱性危険度と感覚的な危険度に乖離があるかもしれません。&lt;/p>
 &lt;p>前述の通り、ガイドラインは一度作成したものを使い続けるのではなく、脆弱性対応が完了した後、あるいは1～2年のサイクルで、トリアージ時の改善点（反省点）を踏まえ、アップデートすることを推奨します。&lt;/p>
 &lt;p>その際まずは、基準の定義を変更することで調整できないかどうか検討してみてください。例えば危険度のボーダーラインとなるCVSS値を上下させたり、優先度マトリックスの定義の変更などが考えられます。&lt;/p>
-&lt;p>それでも調整しきれない場合は、資産価値や危険度をより詳細に評価したり、例えば攻撃コードの流通状況など別の評価軸を導入していく必要があります。ただしそのためには多くの場合、詳細な評価をするためには、より専門的な知識が必要になってきます。２章ではそれらの手法について紹介します。&lt;/p>
+&lt;p>それでも調整しきれない場合は、資産価値や危険度をより詳細に評価したり、例えば攻撃コードの流通状況など別の評価軸を導入していく必要があります。ただしそのためには多くの場合、詳細な評価をするためにより専門的な知識が必要になってきます。２章ではそれらの手法について紹介します。&lt;/p>
 &lt;p>どうしてもすべてのシステムに適用できる統一的な基準の調整が難しいようであれば、特定のシステム専用に基準値の違うガイドラインを作成することも検討してください。&lt;/p></description></item></channel></rss>
