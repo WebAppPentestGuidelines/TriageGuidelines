@@ -11,7 +11,7 @@ by [脆弱性診断士スキルマッププロジェクト](https://github.com/O
 
 
 ## 脆弱性トリアージガイドライン作成の手引き
-* [脆弱性トリアージガイドライン作成の手引き](https://github.com/WebAppPentestGuidelines/TriageGuidelines/blob/main/Guidance%20on%20developing%20vulnerability%20triage%20guidelines.md)
+* [脆弱性トリアージガイドライン作成の手引き](https://webapppentestguidelines.github.io/TriageGuidelines/)
 
 本ガイドラインは現時点（2024年5月24日）で第1章までの公開となっております。
 
