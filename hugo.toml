@@ -4,6 +4,7 @@ languageCode = 'ja'
 title = '脆弱性トリアージガイドライン作成の手引き'
 enableGitInfo = true
 theme = 'hugo-book'
+googleAnalytics = "G-1DJE63T8MY"
 
 # (Optional) If you provide a Disqus shortname, comments will be enabled on
 # all pages.
